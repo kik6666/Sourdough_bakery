@@ -1,0 +1,18 @@
+body {
+  background: radial-gradient(circle at top, #fff8ec 0%, var(--bakery-bg) 55%, #efe2ce 100%);
+  color: var(--bakery-text);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.page-shell {
+  padding: 2rem 0;
+}
+
+.page-title {
+  color: var(--bakery-accent);
+}
+
+.placeholder-card {
+  background: var(--bakery-surface);
+  border: 1px solid #e6d8c5;
+}

@@ -1,0 +1,30 @@
+{
+  "name": "sourdough_bakery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kik6666/Sourdough_bakery.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/kik6666/Sourdough_bakery/issues"
+  },
+  "homepage": "https://github.com/kik6666/Sourdough_bakery#readme",
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.8"
+  },
+  "devDependencies": {
+    "vite": "^8.1.4"
+  }
+}
