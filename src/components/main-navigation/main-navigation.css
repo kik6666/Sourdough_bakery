@@ -1,8 +1,2 @@
-.nav-link.active {
-  font-weight: 600;
-  color: var(--bakery-accent) !important;
-}
-
-#auth-nav-actions {
-  gap: 0.5rem;
-}
+/* Nav link active/hover styles are handled in header.css.
+   This file is kept for any future nav-specific overrides. */

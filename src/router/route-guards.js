@@ -5,6 +5,7 @@ const ADMIN_ONLY_ROUTES = new Set([
   "/manage-recipes",
   "/manage-articles",
   "/manage-orders",
+  "/manage-users",
 ]);
 const GUEST_ONLY_ROUTES = new Set(["/login", "/register"]);
 

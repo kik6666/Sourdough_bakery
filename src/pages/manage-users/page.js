@@ -3,11 +3,11 @@ import "./styles.css";
 import { getAuthState } from "../../auth/auth-state.js";
 
 export function render() {
-  return `<div class="container">${template}</div>`;
+  return template;
 }
 
 export function mount() {
-  document.title = "Sourdough Bakery | Admin Dashboard";
+  document.title = "Sourdough Bakery | Manage Users";
 
   const authState = getAuthState();
   if (!authState.isAuthenticated || authState.role !== "administrator") {

@@ -5,4 +5,7 @@ main#site-main {
 
 #page-container {
   min-height: 50vh;
+  /* Ensures full-bleed page sections can override container padding */
+  padding-top: 0;
+  padding-bottom: 0;
 }

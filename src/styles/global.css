@@ -1,18 +1,154 @@
+/* ─── Base ──────────────────────────────────────── */
 body {
-  background: radial-gradient(circle at top, #fff8ec 0%, var(--bakery-bg) 55%, #efe2ce 100%);
+  background-color: var(--bakery-bg);
+  background-image: radial-gradient(ellipse at top, #fff8ec 0%, var(--bakery-bg) 55%, #efe2ce 100%);
+  background-attachment: fixed;
   color: var(--bakery-text);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
+h1, h2, h3, h4, h5, h6,
+.font-heading {
+  font-family: var(--font-heading);
+  line-height: 1.25;
+  color: var(--bakery-text);
+}
+
+/* ─── Section Utilities ─────────────────────────── */
+.section {
+  padding: var(--space-3xl) 0;
+}
+
+.section-sm {
+  padding: var(--space-2xl) 0;
+}
+
+.section-lg {
+  padding: var(--space-4xl) 0;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  color: var(--bakery-text);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+}
+
+.section-subtitle {
+  color: var(--bakery-muted);
+  font-size: 1.0625rem;
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+.section-divider {
+  width: 48px;
+  height: 3px;
+  background: var(--bakery-accent);
+  border: none;
+  margin: var(--space-md) 0 var(--space-lg);
+  border-radius: var(--radius-full);
+  opacity: 1;
+}
+
+/* ─── Container Variants ────────────────────────── */
+.container-narrow {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* ─── Card System ───────────────────────────────── */
+.card-bakery {
+  background: var(--bakery-surface);
+  border: 1px solid var(--bakery-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.card-bakery:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* ─── Page Shell ────────────────────────────────── */
 .page-shell {
-  padding: 2rem 0;
+  padding: var(--space-xl) 0 var(--space-3xl);
 }
 
+/* ─── Legacy compatibility ──────────────────────── */
 .page-title {
+  font-family: var(--font-heading);
   color: var(--bakery-accent);
 }
 
 .placeholder-card {
   background: var(--bakery-surface);
-  border: 1px solid #e6d8c5;
+  border: 1px solid var(--bakery-border);
+  border-radius: var(--radius-lg);
 }
+
+/* ─── Buttons ───────────────────────────────────── */
+.btn-bakery {
+  background-color: var(--bakery-accent);
+  border: 1.5px solid var(--bakery-accent);
+  color: #fff;
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  border-radius: var(--radius-md);
+  padding: 0.6rem 1.5rem;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn-bakery:hover,
+.btn-bakery:focus {
+  background-color: var(--bakery-accent-hover);
+  border-color: var(--bakery-accent-hover);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.btn-bakery-outline {
+  background-color: transparent;
+  border: 1.5px solid var(--bakery-accent);
+  color: var(--bakery-accent);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  border-radius: var(--radius-md);
+  padding: 0.6rem 1.5rem;
+  transition: all var(--transition-fast);
+}
+
+.btn-bakery-outline:hover,
+.btn-bakery-outline:focus {
+  background-color: var(--bakery-accent);
+  color: #fff;
+}
+
+/* ─── Tags ──────────────────────────────────────── */
+.tag-bakery {
+  display: inline-block;
+  background: var(--bakery-beige);
+  color: var(--bakery-accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-full);
+}
+
+/* ─── Utilities ─────────────────────────────────── */
+.text-accent      { color: var(--bakery-accent) !important; }
+.text-muted-warm  { color: var(--bakery-muted)  !important; }
+.bg-surface       { background-color: var(--bakery-surface) !important; }
+.bg-cream         { background-color: var(--bakery-cream)   !important; }
+.bg-beige         { background-color: var(--bakery-beige)   !important; }
+.border-warm      { border-color: var(--bakery-border)      !important; }

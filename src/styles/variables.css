@@ -1,7 +1,75 @@
 :root {
+  /* ─── Core Brand Colors ─────────────────────────── */
   --bakery-bg: #f7f2e8;
   --bakery-surface: #fffdf8;
   --bakery-accent: #8b4513;
+  --bakery-accent-hover: #a0522d;
+  --bakery-accent-dark: #6b2f0a;
+  --bakery-accent-light: #c4956a;
   --bakery-text: #2d241c;
   --bakery-muted: #7a6a5c;
+  --bakery-border: #e6d8c5;
+  --bakery-border-light: #f0e8d8;
+
+  /* ─── Extended Palette ──────────────────────────── */
+  --bakery-cream: #fdf6e8;
+  --bakery-warm-white: #fffcf5;
+  --bakery-beige: #f0e2cc;
+  --bakery-sand: #e8d5b5;
+  --bakery-light-brown: #c4956a;
+  --bakery-dark-brown: #3d1f0d;
+
+  /* ─── Navigation ─────────────────────────────────── */
+  --nav-bg: rgba(255, 253, 248, 0.97);
+  --nav-height: 68px;
+  --nav-border: #ede0cc;
+  --nav-shadow: 0 2px 20px rgba(45, 36, 28, 0.08);
+  --nav-shadow-scrolled: 0 4px 30px rgba(45, 36, 28, 0.14);
+
+  /* ─── Footer ────────────────────────────────────── */
+  --footer-bg: #2a1f17;
+  --footer-surface: #332519;
+  --footer-text: #d4c5b0;
+  --footer-muted: #9a8a7a;
+  --footer-border: #3d3028;
+  --footer-accent: #c4956a;
+
+  /* ─── Typography ─────────────────────────────────── */
+  --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Lato', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  /* ─── Spacing Scale ─────────────────────────────── */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+
+  /* ─── Border Radius ──────────────────────────────── */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* ─── Shadows ───────────────────────────────────── */
+  --shadow-xs: 0 1px 3px rgba(45, 36, 28, 0.06);
+  --shadow-sm: 0 2px 8px rgba(45, 36, 28, 0.08);
+  --shadow-md: 0 4px 16px rgba(45, 36, 28, 0.12);
+  --shadow-lg: 0 8px 32px rgba(45, 36, 28, 0.16);
+  --shadow-xl: 0 16px 48px rgba(45, 36, 28, 0.20);
+
+  /* ─── Transitions ───────────────────────────────── */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  /* ─── Z-index ───────────────────────────────────── */
+  --z-header: 1000;
+  --z-dropdown: 1010;
+  --z-modal: 1050;
+  --z-toast: 1080;
 }

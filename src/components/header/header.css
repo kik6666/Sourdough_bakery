@@ -1,16 +1,194 @@
-.brand-logo-placeholder {
-  width: 2rem;
-  height: 2rem;
-  font-size: 0.75rem;
+/* ─── Navbar Shell ─────────────────────────────────── */
+#main-navbar {
+  background-color: var(--nav-bg);
+  border-bottom: 1px solid var(--nav-border);
+  min-height: var(--nav-height);
+  z-index: var(--z-header);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: box-shadow var(--transition-base);
+}
+
+#main-navbar.navbar-scrolled {
+  box-shadow: var(--nav-shadow-scrolled);
+}
+
+/* ─── Brand ──────────────────────────────────────── */
+.navbar-brand {
+  text-decoration: none;
+  padding: 0;
+}
+
+.brand-logo {
+  width: 36px;
+  height: 36px;
+  color: var(--bakery-accent);
+  flex-shrink: 0;
+  transition: color var(--transition-fast);
+}
+
+.navbar-brand:hover .brand-logo {
+  color: var(--bakery-accent-hover);
+}
+
+.brand-name {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  line-height: 1.3;
+  color: var(--bakery-text);
+  letter-spacing: 0.01em;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name strong {
+  display: block;
   font-weight: 700;
+  color: var(--bakery-accent);
+  font-size: 1rem;
+}
+
+/* ─── Nav Links ──────────────────────────────────── */
+#primary-nav-links .nav-link {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--bakery-muted);
+  letter-spacing: 0.02em;
+  padding: 0.5rem 0.85rem;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+#primary-nav-links .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0.85rem;
+  right: 0.85rem;
+  height: 2px;
+  background: var(--bakery-accent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--transition-base);
+  border-radius: var(--radius-full);
+}
+
+#primary-nav-links .nav-link:hover,
+#primary-nav-links .nav-link:focus {
+  color: var(--bakery-accent);
+}
+
+#primary-nav-links .nav-link:hover::after,
+#primary-nav-links .nav-link.active::after {
+  transform: scaleX(1);
+}
+
+#primary-nav-links .nav-link.active {
+  color: var(--bakery-accent);
+  font-weight: 600;
+}
+
+/* ─── Auth Actions ───────────────────────────────── */
+#auth-nav-actions {
+  gap: 0.5rem;
 }
 
 #auth-nav-actions .btn {
-  width: 100%;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius-md);
+  padding: 0.4rem 1rem;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
 }
 
-@media (min-width: 992px) {
-  #auth-nav-actions .btn {
-    width: auto;
+/* Guest */
+#auth-nav-actions .btn-nav-login {
+  color: var(--bakery-accent);
+  border: 1.5px solid var(--bakery-accent);
+  background: transparent;
+}
+#auth-nav-actions .btn-nav-login:hover,
+#auth-nav-actions .btn-nav-login:focus {
+  background: var(--bakery-accent);
+  color: #fff;
+}
+
+#auth-nav-actions .btn-nav-register {
+  background: var(--bakery-accent);
+  border: 1.5px solid var(--bakery-accent);
+  color: #fff;
+}
+#auth-nav-actions .btn-nav-register:hover,
+#auth-nav-actions .btn-nav-register:focus {
+  background: var(--bakery-accent-hover);
+  border-color: var(--bakery-accent-hover);
+  color: #fff;
+}
+
+/* Authenticated: ghost */
+#auth-nav-actions .btn-nav-ghost {
+  color: var(--bakery-muted);
+  border: 1.5px solid transparent;
+  background: transparent;
+}
+#auth-nav-actions .btn-nav-ghost:hover,
+#auth-nav-actions .btn-nav-ghost:focus,
+#auth-nav-actions .btn-nav-ghost.active {
+  color: var(--bakery-accent);
+  border-color: var(--bakery-border);
+  background: var(--bakery-beige);
+}
+
+/* Admin pill */
+#auth-nav-actions .btn-nav-admin {
+  background: var(--bakery-dark-brown);
+  border: 1.5px solid var(--bakery-dark-brown);
+  color: #f5ede0;
+  font-size: 0.77rem;
+  letter-spacing: 0.03em;
+}
+#auth-nav-actions .btn-nav-admin:hover {
+  background: var(--bakery-accent-dark);
+  border-color: var(--bakery-accent-dark);
+  color: #fff;
+}
+
+/* Logout */
+#auth-nav-actions .btn-nav-logout {
+  color: #b84040;
+  border: 1.5px solid transparent;
+  background: transparent;
+}
+#auth-nav-actions .btn-nav-logout:hover {
+  background: #fdecea;
+  border-color: #f5b7b1;
+  color: #922b2b;
+}
+
+/* Mobile full-width collapse */
+@media (max-width: 991.98px) {
+  #auth-nav-actions {
+    padding-bottom: 0.75rem;
   }
+
+  #auth-nav-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  #primary-nav-links .nav-link::after {
+    display: none;
+  }
+}
+
+/* ─── Toggler ────────────────────────────────────── */
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.25);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(139,69,19,0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }

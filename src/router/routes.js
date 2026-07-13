@@ -18,6 +18,7 @@ export const routes = {
   "/manage-recipes": () => import("../pages/manage-recipes/page.js"),
   "/manage-articles": () => import("../pages/manage-articles/page.js"),
   "/manage-orders": () => import("../pages/manage-orders/page.js"),
+  "/manage-users": () => import("../pages/manage-users/page.js"),
 };
 
 export const defaultRoute = "/home";

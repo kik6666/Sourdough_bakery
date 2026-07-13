@@ -8,36 +8,53 @@ const primaryLinks = [
   { path: "/contact", label: "Contact" },
 ];
 
+function active(path, currentPath) {
+  return path === currentPath ? " active" : "";
+}
+
 function renderPrimaryLinks(currentPath) {
   return primaryLinks
     .map(
-      (item) => `
-        <li class="nav-item">
-          <a class="nav-link ${item.path === currentPath ? "active" : ""}" href="#${item.path}">${item.label}</a>
-        </li>
-      `,
+      (item) =>
+        `<li class="nav-item">
+          <a class="nav-link${active(item.path, currentPath)}" href="#${item.path}">${item.label}</a>
+        </li>`,
     )
     .join("");
 }
 
+function renderGuestActions(currentPath) {
+  return `
+    <a class="btn btn-nav-login${active("/login", currentPath)}" href="#/login">Login</a>
+    <a class="btn btn-nav-register${active("/register", currentPath)}" href="#/register">Register</a>
+  `;
+}
+
+function renderCustomerActions(currentPath) {
+  return `
+    <a class="btn btn-nav-ghost${active("/profile", currentPath)}" href="#/profile">Profile</a>
+    <a class="btn btn-nav-ghost${active("/my-orders", currentPath)}" href="#/my-orders">My Orders</a>
+    <button class="btn btn-nav-logout" type="button" id="logout-btn">Logout</button>
+  `;
+}
+
+function renderAdminActions(currentPath) {
+  return `
+    <a class="btn btn-nav-admin${active("/admin-dashboard", currentPath)}" href="#/admin-dashboard">Admin Dashboard</a>
+    <button class="btn btn-nav-logout" type="button" id="logout-btn">Logout</button>
+  `;
+}
+
 function renderAuthActions(authState, currentPath) {
   if (!authState?.isAuthenticated) {
-    return `
-      <a class="btn btn-outline-secondary btn-sm ${currentPath === "/login" ? "active" : ""}" href="#/login">Login</a>
-      <a class="btn btn-primary btn-sm ${currentPath === "/register" ? "active" : ""}" href="#/register">Register</a>
-    `;
+    return renderGuestActions(currentPath);
   }
 
-  const adminLink =
-    authState.role === "administrator"
-      ? `<a class="btn btn-outline-primary btn-sm ${currentPath === "/admin-dashboard" ? "active" : ""}" href="#/admin-dashboard">Admin Dashboard</a>`
-      : "";
+  if (authState.role === "administrator") {
+    return renderAdminActions(currentPath);
+  }
 
-  return `
-    ${adminLink}
-    <a class="btn btn-outline-secondary btn-sm ${currentPath === "/profile" ? "active" : ""}" href="#/profile">Profile</a>
-    <button class="btn btn-danger btn-sm" type="button" id="logout-btn">Logout</button>
-  `;
+  return renderCustomerActions(currentPath);
 }
 
 export function mountMainNavigation(currentPath, authState) {
