@@ -27,23 +27,6 @@ begin
 end;
 $$;
 
--- Helper function used by RLS policies
--- SECURITY DEFINER is used so role checks can be resolved consistently.
-create or replace function public.is_admin(uid uuid default auth.uid())
-returns boolean
-language sql
-stable
-security definer
-set search_path = public
-as $$
-  select exists (
-    select 1
-    from public.profiles p
-    where p.id = uid
-      and p.role = 'administrator'
-  );
-$$;
-
 -- =========================================================
 -- Tables
 -- =========================================================
@@ -138,6 +121,27 @@ create table if not exists public.order_items (
   updated_at timestamptz not null default now(),
   unique (order_id, product_id)
 );
+
+-- =========================================================
+-- Post-table helper functions
+-- =========================================================
+
+-- Helper function used by RLS policies
+-- SECURITY DEFINER is used so role checks can be resolved consistently.
+create or replace function public.is_admin(uid uuid default auth.uid())
+returns boolean
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  select exists (
+    select 1
+    from public.profiles p
+    where p.id = uid
+      and p.role = 'administrator'
+  );
+$$;
 
 -- =========================================================
 -- Indexes
@@ -528,93 +532,99 @@ insert into storage.buckets (id, name, public)
 values ('avatars', 'avatars', false)
 on conflict (id) do nothing;
 
--- Ensure RLS on storage objects is enabled.
-alter table storage.objects enable row level security;
+-- Storage policy setup can fail on some hosted roles due ownership restrictions.
+-- Keep core schema migration successful even when these policy DDL statements are blocked.
+do $$
+begin
+  -- Public read for public content buckets
+  -- (products, recipes, articles)
+  drop policy if exists storage_public_read_content on storage.objects;
+  create policy storage_public_read_content
+  on storage.objects
+  for select
+  to anon, authenticated
+  using (bucket_id in ('products', 'recipes', 'articles'));
 
--- Public read for public content buckets
--- (products, recipes, articles)
-drop policy if exists storage_public_read_content on storage.objects;
-create policy storage_public_read_content
-on storage.objects
-for select
-to anon, authenticated
-using (bucket_id in ('products', 'recipes', 'articles'));
+  -- Admin full access to all storage objects
+  drop policy if exists storage_admin_full_access on storage.objects;
+  create policy storage_admin_full_access
+  on storage.objects
+  for all
+  to authenticated
+  using (public.is_admin())
+  with check (public.is_admin());
 
--- Admin full access to all storage objects
-drop policy if exists storage_admin_full_access on storage.objects;
-create policy storage_admin_full_access
-on storage.objects
-for all
-to authenticated
-using (public.is_admin())
-with check (public.is_admin());
+  -- Avatar read: owner or admin
+  drop policy if exists storage_avatars_select_owner_or_admin on storage.objects;
+  create policy storage_avatars_select_owner_or_admin
+  on storage.objects
+  for select
+  to authenticated
+  using (
+    bucket_id = 'avatars'
+    and (
+      owner = auth.uid()
+      or (storage.foldername(name))[1] = auth.uid()::text
+      or public.is_admin()
+    )
+  );
 
--- Avatar read: owner or admin
-drop policy if exists storage_avatars_select_owner_or_admin on storage.objects;
-create policy storage_avatars_select_owner_or_admin
-on storage.objects
-for select
-to authenticated
-using (
-  bucket_id = 'avatars'
-  and (
-    owner = auth.uid()
-    or (storage.foldername(name))[1] = auth.uid()::text
-    or public.is_admin()
+  -- Avatar insert: owner folder or admin
+  drop policy if exists storage_avatars_insert_owner_or_admin on storage.objects;
+  create policy storage_avatars_insert_owner_or_admin
+  on storage.objects
+  for insert
+  to authenticated
+  with check (
+    bucket_id = 'avatars'
+    and (
+      owner = auth.uid()
+      or (storage.foldername(name))[1] = auth.uid()::text
+      or public.is_admin()
+    )
+  );
+
+  -- Avatar update: owner or admin
+  drop policy if exists storage_avatars_update_owner_or_admin on storage.objects;
+  create policy storage_avatars_update_owner_or_admin
+  on storage.objects
+  for update
+  to authenticated
+  using (
+    bucket_id = 'avatars'
+    and (
+      owner = auth.uid()
+      or (storage.foldername(name))[1] = auth.uid()::text
+      or public.is_admin()
+    )
   )
-);
+  with check (
+    bucket_id = 'avatars'
+    and (
+      owner = auth.uid()
+      or (storage.foldername(name))[1] = auth.uid()::text
+      or public.is_admin()
+    )
+  );
 
--- Avatar insert: owner folder or admin
-drop policy if exists storage_avatars_insert_owner_or_admin on storage.objects;
-create policy storage_avatars_insert_owner_or_admin
-on storage.objects
-for insert
-to authenticated
-with check (
-  bucket_id = 'avatars'
-  and (
-    owner = auth.uid()
-    or (storage.foldername(name))[1] = auth.uid()::text
-    or public.is_admin()
-  )
-);
-
--- Avatar update: owner or admin
-drop policy if exists storage_avatars_update_owner_or_admin on storage.objects;
-create policy storage_avatars_update_owner_or_admin
-on storage.objects
-for update
-to authenticated
-using (
-  bucket_id = 'avatars'
-  and (
-    owner = auth.uid()
-    or (storage.foldername(name))[1] = auth.uid()::text
-    or public.is_admin()
-  )
-)
-with check (
-  bucket_id = 'avatars'
-  and (
-    owner = auth.uid()
-    or (storage.foldername(name))[1] = auth.uid()::text
-    or public.is_admin()
-  )
-);
-
--- Avatar delete: owner or admin
-drop policy if exists storage_avatars_delete_owner_or_admin on storage.objects;
-create policy storage_avatars_delete_owner_or_admin
-on storage.objects
-for delete
-to authenticated
-using (
-  bucket_id = 'avatars'
-  and (
-    owner = auth.uid()
-    or (storage.foldername(name))[1] = auth.uid()::text
-    or public.is_admin()
-  )
-);
+  -- Avatar delete: owner or admin
+  drop policy if exists storage_avatars_delete_owner_or_admin on storage.objects;
+  create policy storage_avatars_delete_owner_or_admin
+  on storage.objects
+  for delete
+  to authenticated
+  using (
+    bucket_id = 'avatars'
+    and (
+      owner = auth.uid()
+      or (storage.foldername(name))[1] = auth.uid()::text
+      or public.is_admin()
+    )
+  );
+exception
+  when insufficient_privilege then
+    raise notice 'Skipping storage policy setup due to insufficient privilege on storage.objects. Configure policies in Storage -> Policies if needed.';
+end;
+$$;
 
 commit;
