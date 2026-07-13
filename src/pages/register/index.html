@@ -1,9 +1,33 @@
 <section class="row justify-content-center">
-  <div class="col-12 col-lg-10">
-    <div class="placeholder-card rounded-3 p-4 p-md-5 shadow-sm">
-      <h1 class="page-title h2 mb-3">Register</h1>
-      <p class="lead mb-2">Authenticated page scaffold</p>
-      <p class="mb-0 text-muted">This placeholder page is ready for incremental implementation.</p>
+  <div class="col-12 col-md-8 col-lg-6">
+    <div class="rounded-3 p-4 p-md-5 border bg-white">
+      <h1 class="h3 mb-4">Register</h1>
+
+      <form id="register-form" novalidate>
+        <div class="mb-3">
+          <label for="register-full-name" class="form-label">Full Name</label>
+          <input id="register-full-name" name="fullName" type="text" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="register-email" class="form-label">Email</label>
+          <input id="register-email" name="email" type="email" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="register-password" class="form-label">Password</label>
+          <input id="register-password" name="password" type="password" class="form-control" minlength="6" required />
+        </div>
+
+        <div id="register-status" class="small mb-3" aria-live="polite"></div>
+
+        <button id="register-submit" type="submit" class="btn btn-primary w-100">Create Account</button>
+      </form>
+
+      <p class="mt-3 mb-0">
+        Already have an account?
+        <a href="#/login">Sign in</a>
+      </p>
     </div>
   </div>
 </section>

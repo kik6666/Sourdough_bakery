@@ -1,9 +1,33 @@
 <section class="row justify-content-center">
-  <div class="col-12 col-lg-10">
-    <div class="placeholder-card rounded-3 p-4 p-md-5 shadow-sm">
-      <h1 class="page-title h2 mb-3">Profile</h1>
-      <p class="lead mb-2">Authenticated page scaffold</p>
-      <p class="mb-0 text-muted">This placeholder page is ready for incremental implementation.</p>
+  <div class="col-12 col-lg-8">
+    <div class="rounded-3 p-4 p-md-5 border bg-white">
+      <h1 class="h3 mb-4">My Profile</h1>
+
+      <form id="profile-form" novalidate>
+        <div class="mb-3">
+          <label for="profile-email" class="form-label">Email</label>
+          <input id="profile-email" type="email" class="form-control" disabled />
+        </div>
+
+        <div class="mb-3">
+          <label for="profile-full-name" class="form-label">Full Name</label>
+          <input id="profile-full-name" name="fullName" type="text" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="profile-phone" class="form-label">Phone</label>
+          <input id="profile-phone" name="phone" type="text" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+          <label for="profile-address" class="form-label">Address</label>
+          <textarea id="profile-address" name="address" class="form-control" rows="3"></textarea>
+        </div>
+
+        <div id="profile-status" class="small mb-3" aria-live="polite"></div>
+
+        <button id="profile-save" type="submit" class="btn btn-primary">Save Changes</button>
+      </form>
     </div>
   </div>
 </section>
