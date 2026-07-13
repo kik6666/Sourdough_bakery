@@ -16,3 +16,10 @@ export {
 	clearCart,
 	getCartTotal,
 } from "./cart-service.js";
+export {
+	createOrder,
+	getMyOrders,
+	getOrderById,
+	cancelOrder,
+	updateOrderStatus,
+} from "./order-service.js";
