@@ -1,3 +1,7 @@
 footer {
   background-color: #f8f9fa;
 }
+
+footer a {
+  color: inherit;
+}

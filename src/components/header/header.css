@@ -1,4 +1,16 @@
-.nav-link.active {
-  font-weight: 600;
-  color: var(--bakery-accent) !important;
+.brand-logo-placeholder {
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+#auth-nav-actions .btn {
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  #auth-nav-actions .btn {
+    width: auto;
+  }
 }

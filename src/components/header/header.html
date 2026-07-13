@@ -1,6 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" aria-label="Main navigation">
   <div class="container">
-    <a class="navbar-brand fw-semibold" href="#/home">Sourdough Bakery</a>
+    <a class="navbar-brand fw-semibold d-flex align-items-center gap-2" href="#/home" aria-label="Sourdough Bakery home">
+      <span class="brand-logo-placeholder rounded-circle border d-inline-flex justify-content-center align-items-center">SB</span>
+      <span>Sourdough Bakery</span>
+    </a>
     <button
       class="navbar-toggler"
       type="button"
@@ -13,7 +16,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav-links"></ul>
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0" id="primary-nav-links"></ul>
+      <div class="d-flex flex-column flex-lg-row mt-3 mt-lg-0" id="auth-nav-actions"></div>
     </div>
   </div>
 </nav>
