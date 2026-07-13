@@ -29,7 +29,7 @@ Role source:
 - Slugs: Unique, lowercase URL-safe identifiers for SEO-friendly routing
 - Money: Use fixed precision decimal type for prices (not float)
 - Status fields: Restrict with controlled value checks (or enum type in implementation)
-- Soft delete: Not included in this phase; can be added later via `deleted_at`
+- Soft delete: `products.is_active` is used to hide products instead of hard deletion
 
 ## 4) Table Definitions
 
@@ -78,6 +78,7 @@ Represents sellable catalog items.
 | category_id | uuid | FK -> categories.id, NOT NULL, ON UPDATE CASCADE, ON DELETE RESTRICT | Belongs to one category |
 | name | text | NOT NULL | Product name |
 | slug | text | NOT NULL, UNIQUE | URL path key |
+| short_description | text | NULL | Card-friendly short summary |
 | description | text | NULL | Marketing and product details |
 | ingredients | text | NULL | Ingredient list (text for current scope) |
 | weight | numeric(8,2) | NULL, CHECK weight > 0 | Weight in grams or kilograms (unit convention required) |
@@ -85,13 +86,15 @@ Represents sellable catalog items.
 | image_url | text | NULL | Main image URL in `products` bucket |
 | is_featured | boolean | NOT NULL, DEFAULT false | Homepage highlighting |
 | in_stock | boolean | NOT NULL, DEFAULT true | Availability toggle |
+| is_active | boolean | NOT NULL, DEFAULT true | Soft-delete/visibility toggle |
 | created_at | timestamptz | NOT NULL, DEFAULT now() | Product creation timestamp |
 
 Indexes:
 - Unique index on `slug`
 - Index on `category_id`
 - Index on `is_featured`
-- Optional partial index for in-stock products
+- Partial index for in-stock products
+- Partial index for active products
 
 ## 4.4 `recipes`
 Stores educational/marketing recipe content.
@@ -99,6 +102,7 @@ Stores educational/marketing recipe content.
 | Field | Type (Suggested) | Constraints | Notes |
 |---|---|---|---|
 | id | uuid | PK, NOT NULL | Recipe identifier |
+| created_by | uuid | FK -> profiles.id, NULL, ON DELETE SET NULL | Administrator author/owner |
 | title | text | NOT NULL | Recipe title |
 | slug | text | NOT NULL, UNIQUE | URL path key |
 | description | text | NULL | Short intro |
@@ -108,6 +112,7 @@ Stores educational/marketing recipe content.
 
 Indexes:
 - Unique index on `slug`
+- Index on `created_by`
 
 ## 4.5 `articles`
 Stores long-form educational and promotional content.
@@ -115,6 +120,7 @@ Stores long-form educational and promotional content.
 | Field | Type (Suggested) | Constraints | Notes |
 |---|---|---|---|
 | id | uuid | PK, NOT NULL | Article identifier |
+| created_by | uuid | FK -> profiles.id, NULL, ON DELETE SET NULL | Administrator author/owner |
 | title | text | NOT NULL | Article title |
 | slug | text | NOT NULL, UNIQUE | URL path key |
 | summary | text | NULL | Preview text |
@@ -124,6 +130,7 @@ Stores long-form educational and promotional content.
 
 Indexes:
 - Unique index on `slug`
+- Index on `created_by`
 
 ## 4.6 `orders`
 Stores customer order headers.
@@ -134,11 +141,14 @@ Stores customer order headers.
 | user_id | uuid | FK -> profiles.id, NOT NULL, ON UPDATE CASCADE, ON DELETE RESTRICT | Order owner |
 | total_price | numeric(10,2) | NOT NULL, CHECK total_price >= 0 | Order grand total snapshot |
 | status | text | NOT NULL, CHECK status IN ('pending','confirmed','preparing','shipped','delivered','cancelled'), DEFAULT 'pending' | Order lifecycle state |
+| delivery_method | text | NOT NULL, CHECK delivery_method IN ('pickup','delivery'), DEFAULT 'pickup' | Fulfillment type |
+| notes | text | NULL | Customer notes (instructions/allergies/preferences) |
 | created_at | timestamptz | NOT NULL, DEFAULT now() | Order creation timestamp |
 
 Indexes:
 - Index on `user_id`
 - Index on `status`
+- Index on `delivery_method`
 - Index on `created_at` (descending for history views)
 
 ## 4.7 `order_items`
@@ -175,10 +185,14 @@ Potential future normalization (optional):
 |---|---|---|---|
 | categories | products | 1 -> many | One category has many products |
 | profiles | orders | 1 -> many | One user profile has many orders |
+| profiles | recipes | 1 -> many | One admin profile can create many recipes |
+| profiles | articles | 1 -> many | One admin profile can create many articles |
 | orders | order_items | 1 -> many | One order has many line items |
 | products | order_items | 1 -> many | One product can appear in many order items |
 | products | categories | many -> 1 | Many products belong to one category |
 | orders | profiles | many -> 1 | Many orders belong to one user |
+| recipes | profiles | many -> 1 | Many recipes can be created by one admin profile |
+| articles | profiles | many -> 1 | Many articles can be created by one admin profile |
 | order_items | orders | many -> 1 | Many order items belong to one order |
 | order_items | products | many -> 1 | Many order items reference one product |
 
@@ -186,6 +200,8 @@ Potential future normalization (optional):
 ```mermaid
 erDiagram
     PROFILES ||--o{ ORDERS : places
+    PROFILES ||--o{ RECIPES : creates
+    PROFILES ||--o{ ARTICLES : creates
     CATEGORIES ||--o{ PRODUCTS : contains
     ORDERS ||--o{ ORDER_ITEMS : includes
     PRODUCTS ||--o{ ORDER_ITEMS : purchased_as
@@ -212,6 +228,7 @@ erDiagram
         uuid category_id FK
         text name
         text slug UNIQUE
+        text short_description
         text description
         text ingredients
         numeric weight
@@ -219,11 +236,13 @@ erDiagram
         text image_url
         boolean is_featured
         boolean in_stock
+        boolean is_active
         timestamptz created_at
     }
 
     RECIPES {
         uuid id PK
+        uuid created_by FK
         text title
         text slug UNIQUE
         text description
@@ -234,6 +253,7 @@ erDiagram
 
     ARTICLES {
         uuid id PK
+        uuid created_by FK
         text title
         text slug UNIQUE
         text summary
@@ -247,6 +267,8 @@ erDiagram
         uuid user_id FK
         numeric total_price
         text status
+        text delivery_method
+        text notes
         timestamptz created_at
     }
 
@@ -275,7 +297,7 @@ Policy design is based on role in `profiles.role` and owner checks with `auth.ui
 | Table | Guest (unauthenticated) | Customer (authenticated) | Administrator |
 |---|---|---|---|
 | profiles | No direct read/write by default | Select/update own profile only (`id = auth.uid()`) | Full select/update on all profiles |
-| products | Read allowed | Read allowed | Full CRUD |
+| products | Read only active products | Read only active products | Full CRUD |
 | recipes | Read allowed | Read allowed | Full CRUD |
 | articles | Read allowed | Read allowed | Full CRUD |
 | orders | No access | Select own orders; insert own orders; update limited fields only when business allows | Full CRUD |
@@ -290,7 +312,9 @@ Policy design is based on role in `profiles.role` and owner checks with `auth.ui
 - `DELETE`: admin only (or disallow hard delete globally)
 
 ### `products`, `recipes`, `articles`
-- `SELECT`: allow all (`true`) for public visibility
+- `products SELECT`: allow only active rows for guests/customers; admins can view all rows
+- `recipes SELECT`: allow all (`true`) for public visibility
+- `articles SELECT`: allow all (`true`) for public visibility
 - `INSERT`, `UPDATE`, `DELETE`: admin only
 
 ### `orders`
