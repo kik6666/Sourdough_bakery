@@ -176,3 +176,157 @@
   }
 }
 
+/* ═══════════════════════════════════════════════════════
+   FEATURED CATEGORIES SECTION
+════════════════════════════════════════════════════════ */
+.featured-categories {
+  background-color: var(--bakery-bg);
+}
+
+/* ─── Header ──────────────────────────────────────────── */
+.featured-categories__header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto var(--space-2xl);
+}
+
+.featured-categories__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bakery-accent);
+  margin-bottom: var(--space-md);
+}
+
+.featured-categories__eyebrow-line {
+  width: 34px;
+  height: 2px;
+  background: var(--bakery-accent-light);
+  border-radius: var(--radius-full);
+}
+
+.featured-categories__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 3.4vw, 2.6rem);
+  line-height: 1.2;
+  color: var(--bakery-text);
+  margin-bottom: var(--space-md);
+}
+
+.featured-categories__subtitle {
+  color: var(--bakery-muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin-bottom: 0;
+}
+
+/* ─── Category Card ───────────────────────────────────── */
+.category-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--bakery-surface);
+  border: 1px solid var(--bakery-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--bakery-text);
+  box-shadow: var(--shadow-xs);
+  transition: box-shadow var(--transition-base), transform var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.category-card:hover,
+.category-card:focus-visible {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+  border-color: var(--bakery-accent-light);
+  color: var(--bakery-text);
+}
+
+.category-card:focus-visible {
+  outline: 2px solid var(--bakery-accent);
+  outline-offset: 3px;
+}
+
+/* Image placeholder: fixed aspect ratio, no hardcoded pixel size */
+.category-card__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background-color: var(--bakery-beige);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform var(--transition-slow);
+}
+
+.category-card:hover .category-card__image {
+  transform: scale(1.04);
+}
+
+.category-card__image--bread {
+  background-image: url("../../../featured_products/sourdough_bread_1.jpg");
+}
+
+.category-card__image--pastries {
+  background-image: url("../../../featured_products/sweet_pastry.jpg");
+}
+
+.category-card__image--seasonal {
+  background-image: url("../../../featured_products/jz68-stollen-6848167_1920.jpg");
+}
+
+.category-card__image--gifts {
+  background-image: url("../../../featured_products/seasonal_bakery.jpg");
+}
+
+/* ─── Card Body ───────────────────────────────────────── */
+.category-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.35rem 1.35rem 1.5rem;
+  flex: 1 0 auto;
+}
+
+.category-card__name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--bakery-text);
+}
+
+.category-card__desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--bakery-muted);
+}
+
+.category-card__link {
+  margin-top: auto;
+  padding-top: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bakery-accent);
+}
+
+.category-card__link span {
+  display: inline-block;
+  transition: transform var(--transition-fast);
+}
+
+.category-card:hover .category-card__link span {
+  transform: translateX(4px);
+}
+
+

@@ -35,3 +35,92 @@
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════════════════
+     FEATURED CATEGORIES SECTION
+     Static for now. Cards are structured so they can later be
+     generated from Categories service data without layout change.
+════════════════════════════════════════════════════════ -->
+<section class="featured-categories section" aria-labelledby="featured-categories-title">
+  <div class="container">
+
+    <header class="featured-categories__header">
+      <span class="featured-categories__eyebrow">
+        <span class="featured-categories__eyebrow-line" aria-hidden="true"></span>
+        Explore the Bakery
+      </span>
+      <h2 id="featured-categories-title" class="featured-categories__title">
+        Baked by hand, in small batches
+      </h2>
+      <p class="featured-categories__subtitle">
+        From naturally leavened loaves to seasonal treats, every category is made
+        the slow way &mdash; with patience, care and honest ingredients.
+      </p>
+    </header>
+
+    <div class="row g-4" id="featured-categories-grid">
+
+      <div class="col-12 col-sm-6 col-lg-3">
+        <a class="category-card" href="#/products?category=bread" data-category="bread">
+          <span
+            class="category-card__image category-card__image--bread"
+            role="img"
+            aria-label="Freshly baked sourdough bread"
+          ></span>
+          <span class="category-card__body">
+            <span class="category-card__name">Sourdough Bread</span>
+            <span class="category-card__desc">Crusty, naturally leavened loaves baked fresh daily.</span>
+            <span class="category-card__link">Explore <span aria-hidden="true">&rarr;</span></span>
+          </span>
+        </a>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-3">
+        <a class="category-card" href="#/products?category=pastries" data-category="pastries">
+          <span
+            class="category-card__image category-card__image--pastries"
+            role="img"
+            aria-label="Glazed sweet pastry"
+          ></span>
+          <span class="category-card__body">
+            <span class="category-card__name">Sweet Pastries</span>
+            <span class="category-card__desc">Buttery, hand-rolled pastries and morning treats.</span>
+            <span class="category-card__link">Explore <span aria-hidden="true">&rarr;</span></span>
+          </span>
+        </a>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-3">
+        <a class="category-card" href="#/products?category=seasonal" data-category="seasonal">
+          <span
+            class="category-card__image category-card__image--seasonal"
+            role="img"
+            aria-label="Seasonal bakery specialty"
+          ></span>
+          <span class="category-card__body">
+            <span class="category-card__name">Seasonal Bakery</span>
+            <span class="category-card__desc">Limited specialties that follow the seasons.</span>
+            <span class="category-card__link">Explore <span aria-hidden="true">&rarr;</span></span>
+          </span>
+        </a>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-3">
+        <a class="category-card" href="#/products?category=gifts" data-category="gifts">
+          <span
+            class="category-card__image category-card__image--gifts"
+            role="img"
+            aria-label="Artisan bread gift selection"
+          ></span>
+          <span class="category-card__body">
+            <span class="category-card__name">Gift Boxes</span>
+            <span class="category-card__desc">Curated bakery selections, ready to share.</span>
+            <span class="category-card__link">Explore <span aria-hidden="true">&rarr;</span></span>
+          </span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
