@@ -242,6 +242,7 @@ execute function public.handle_new_user();
 -- =========================================================
 
 grant usage on schema public to anon, authenticated;
+grant usage on schema public to service_role;
 
 grant select on public.categories, public.products, public.recipes, public.articles to anon;
 
@@ -252,6 +253,15 @@ grant select, insert, update, delete on public.recipes to authenticated;
 grant select, insert, update, delete on public.articles to authenticated;
 grant select, insert, update, delete on public.orders to authenticated;
 grant select, insert, update, delete on public.order_items to authenticated;
+
+-- Service role is used by server-side scripts (for example, seeding).
+grant select, insert, update, delete on public.profiles to service_role;
+grant select, insert, update, delete on public.categories to service_role;
+grant select, insert, update, delete on public.products to service_role;
+grant select, insert, update, delete on public.recipes to service_role;
+grant select, insert, update, delete on public.articles to service_role;
+grant select, insert, update, delete on public.orders to service_role;
+grant select, insert, update, delete on public.order_items to service_role;
 
 -- =========================================================
 -- Row Level Security enablement
