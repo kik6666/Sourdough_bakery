@@ -8,3 +8,11 @@ export {
 	getProfileById,
 	updateOwnProfile,
 } from "./auth-service.js";
+export {
+	getCart,
+	addToCart,
+	updateQuantity,
+	removeFromCart,
+	clearCart,
+	getCartTotal,
+} from "./cart-service.js";
