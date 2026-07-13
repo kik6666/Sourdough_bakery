@@ -23,3 +23,11 @@ export {
 	cancelOrder,
 	updateOrderStatus,
 } from "./order-service.js";
+export {
+	uploadProductImage,
+	uploadRecipeImage,
+	uploadArticleImage,
+	uploadAvatar,
+	deleteImage,
+	getPublicUrl,
+} from "./storage-service.js";
