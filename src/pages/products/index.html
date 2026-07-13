@@ -1,9 +1,243 @@
-<section class="row justify-content-center">
-  <div class="col-12 col-lg-10">
-    <div class="placeholder-card rounded-3 p-4 p-md-5 shadow-sm">
-      <h1 class="page-title h2 mb-3">Products</h1>
-      <p class="lead mb-2">Public page scaffold</p>
-      <p class="mb-0 text-muted">This placeholder page is ready for incremental implementation.</p>
+<!-- ═══════════════════════════════════════════════════════
+     PAGE HEADER
+════════════════════════════════════════════════════════ -->
+<section class="products-header" aria-labelledby="products-page-title">
+  <div class="products-header__overlay" aria-hidden="true"></div>
+  <div class="container">
+    <div class="products-header__inner">
+      <span class="products-header__eyebrow">
+        <span class="products-header__eyebrow-line" aria-hidden="true"></span>
+        Freshly Baked Daily
+      </span>
+      <h1 id="products-page-title" class="products-header__title">The Bakery</h1>
+      <p class="products-header__subtitle">
+        Every loaf, pastry and seasonal treat is made by hand, in small batches,
+        the slow way &mdash; with patience, care, and honest ingredients.
+      </p>
+      <a href="#/home" class="products-header__back" aria-label="Back to Home">
+        <span aria-hidden="true">&larr;</span> Back to Home
+      </a>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     PRODUCTS GRID
+════════════════════════════════════════════════════════ -->
+<section class="products-grid section" aria-label="Product listing">
+  <div class="container">
+
+    <!-- ─── Sourdough Bread ─────────────────────────────── -->
+    <div class="products-category" data-category="bread" id="category-bread">
+      <h2 class="products-category__title">Sourdough Bread</h2>
+      <div class="row g-4">
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <article class="product-card">
+            <a class="product-card__link" href="#/product-details?slug=sourdough-bread"
+               data-slug="sourdough-bread" aria-label="View Sourdough Bread">
+              <span class="product-card__media">
+                <span class="product-card__image product-card__image--bread" role="img"
+                      aria-label="Rustic sourdough loaf"></span>
+              </span>
+              <span class="product-card__body">
+                <span class="product-card__name">Sourdough Bread</span>
+                <span class="product-card__desc">Our signature country loaf, slow-fermented for 24 hours.</span>
+                <span class="product-card__footer">
+                  <span class="product-card__price">5.00 лв.</span>
+                  <span class="product-card__cta">View <span aria-hidden="true">&rarr;</span></span>
+                </span>
+              </span>
+            </a>
+          </article>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <article class="product-card">
+            <a class="product-card__link" href="#/product-details?slug=sourdough-baguettes"
+               data-slug="sourdough-baguettes" aria-label="View Sourdough Baguettes">
+              <span class="product-card__media">
+                <span class="product-card__image product-card__image--baguettes" role="img"
+                      aria-label="Freshly baked sourdough baguettes"></span>
+              </span>
+              <span class="product-card__body">
+                <span class="product-card__name">Sourdough Baguettes</span>
+                <span class="product-card__desc">Crisp crust, open crumb &mdash; perfect with soup or cheese.</span>
+                <span class="product-card__footer">
+                  <span class="product-card__price">4.50 лв.</span>
+                  <span class="product-card__cta">View <span aria-hidden="true">&rarr;</span></span>
+                </span>
+              </span>
+            </a>
+          </article>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── Sweet Pastries ─────────────────────────────── -->
+    <div class="products-category" data-category="pastries" id="category-pastries">
+      <h2 class="products-category__title">Sweet Pastries</h2>
+      <div class="row g-4">
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <article class="product-card">
+            <a class="product-card__link" href="#/product-details?slug=butter-croissant"
+               data-slug="butter-croissant" aria-label="View Butter Croissant">
+              <span class="product-card__media">
+                <span class="product-card__image product-card__image--croissant" role="img"
+                      aria-label="Golden butter croissants"></span>
+              </span>
+              <span class="product-card__body">
+                <span class="product-card__name">Butter Croissant</span>
+                <span class="product-card__desc">Laminated by hand with real butter for a flaky finish.</span>
+                <span class="product-card__footer">
+                  <span class="product-card__price">2.80 лв.</span>
+                  <span class="product-card__cta">View <span aria-hidden="true">&rarr;</span></span>
+                </span>
+              </span>
+            </a>
+          </article>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <article class="product-card">
+            <a class="product-card__link" href="#/product-details?slug=muffins"
+               data-slug="muffins" aria-label="View Muffins">
+              <span class="product-card__media">
+                <span class="product-card__image product-card__image--muffins" role="img"
+                      aria-label="Freshly baked muffins"></span>
+              </span>
+              <span class="product-card__body">
+                <span class="product-card__name">Muffins</span>
+                <span class="product-card__desc">Soft, moist and baked fresh with seasonal fruit.</span>
+                <span class="product-card__footer">
+                  <span class="product-card__price">2.50 лв.</span>
+                  <span class="product-card__cta">View <span aria-hidden="true">&rarr;</span></span>
+                </span>
+              </span>
+            </a>
+          </article>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <article class="product-card">
+            <a class="product-card__link" href="#/product-details?slug=pastry-of-the-day"
+               data-slug="pastry-of-the-day" aria-label="View Pastry of the Day">
+              <span class="product-card__media">
+                <span class="product-card__image product-card__image--pastry-day" role="img"
+                      aria-label="Glazed walnut pastry"></span>
+              </span>
+              <span class="product-card__body">
+                <span class="product-card__name">Pastry of the Day</span>
+                <span class="product-card__desc">A rotating baker's choice &mdash; ask what's fresh today.</span>
+                <span class="product-card__footer">
+                  <span class="product-card__price">3.20 лв.</span>
+                  <span class="product-card__cta">View <span aria-hidden="true">&rarr;</span></span>
+                </span>
+              </span>
+            </a>
+          </article>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── Seasonal Bakery ────────────────────────────── -->
+    <div class="products-category" data-category="seasonal" id="category-seasonal">
+      <h2 class="products-category__title">Seasonal Bakery</h2>
+      <div class="row g-4">
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <article class="product-card">
+            <a class="product-card__link" href="#/product-details?slug=stollen"
+               data-slug="stollen" aria-label="View Stollen">
+              <span class="product-card__media">
+                <span class="product-card__image product-card__image--stollen" role="img"
+                      aria-label="Traditional fruit stollen"></span>
+              </span>
+              <span class="product-card__body">
+                <span class="product-card__name">Stollen</span>
+                <span class="product-card__desc">A festive classic with dried fruit, nuts and warm spice.</span>
+                <span class="product-card__footer">
+                  <span class="product-card__price">12.00 лв.</span>
+                  <span class="product-card__cta">View <span aria-hidden="true">&rarr;</span></span>
+                </span>
+              </span>
+            </a>
+          </article>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <article class="product-card">
+            <a class="product-card__link" href="#/product-details?slug=kozunak"
+               data-slug="kozunak" aria-label="View Kozunak">
+              <span class="product-card__media">
+                <span class="product-card__image product-card__image--kozunak" role="img"
+                      aria-label="Braided sweet kozunak bread"></span>
+              </span>
+              <span class="product-card__body">
+                <span class="product-card__name">Kozunak</span>
+                <span class="product-card__desc">Traditional braided sweet bread, light and airy.</span>
+                <span class="product-card__footer">
+                  <span class="product-card__price">9.00 лв.</span>
+                  <span class="product-card__cta">View <span aria-hidden="true">&rarr;</span></span>
+                </span>
+              </span>
+            </a>
+          </article>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <article class="product-card">
+            <a class="product-card__link" href="#/product-details?slug=cinnamon-rolls"
+               data-slug="cinnamon-rolls" aria-label="View Cinnamon Rolls">
+              <span class="product-card__media">
+                <span class="product-card__image product-card__image--cinnamon" role="img"
+                      aria-label="Warm cinnamon rolls"></span>
+              </span>
+              <span class="product-card__body">
+                <span class="product-card__name">Cinnamon Rolls</span>
+                <span class="product-card__desc">Soft, swirled and glazed &mdash; best enjoyed warm.</span>
+                <span class="product-card__footer">
+                  <span class="product-card__price">3.50 лв.</span>
+                  <span class="product-card__cta">View <span aria-hidden="true">&rarr;</span></span>
+                </span>
+              </span>
+            </a>
+          </article>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── Gift Boxes ────────────────────────────────── -->
+    <div class="products-category" data-category="gifts" id="category-gifts">
+      <h2 class="products-category__title">Gift Boxes</h2>
+      <div class="row g-4">
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <article class="product-card">
+            <a class="product-card__link" href="#/product-details?slug=gift-box"
+               data-slug="gift-box" aria-label="View You Choose, We Bake gift box">
+              <span class="product-card__media">
+                <span class="product-card__image product-card__image--gift" role="img"
+                      aria-label="Bakery gift box selection"></span>
+              </span>
+              <span class="product-card__body">
+                <span class="product-card__name">You Choose, We Bake</span>
+                <span class="product-card__desc">A curated bakery gift box, made to order and ready to share.</span>
+                <span class="product-card__footer">
+                  <span class="product-card__price">from 20.00 лв.</span>
+                  <span class="product-card__cta">View <span aria-hidden="true">&rarr;</span></span>
+                </span>
+              </span>
+            </a>
+          </article>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </section>

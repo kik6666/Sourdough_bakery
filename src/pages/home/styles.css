@@ -20,7 +20,7 @@
   align-items: center;
   overflow: hidden;
   background-color: #1c130c;
-  background-image: url("../../../hero_section_image/hero2.jpg");
+  background-image: url("/hero_section_image/hero2.jpg");
   background-size: cover;
   background-position: 72% center;
   background-repeat: no-repeat;
@@ -272,19 +272,19 @@
 }
 
 .category-card__image--bread {
-  background-image: url("../../../featured_products/sourdough_bread_1.jpg");
+  background-image: url("/home_featured_category_products/sourdough_bread_1.jpg");
 }
 
 .category-card__image--pastries {
-  background-image: url("../../../featured_products/sweet_pastry.jpg");
+  background-image: url("/home_featured_category_products/sweet_pastry.jpg");
 }
 
 .category-card__image--seasonal {
-  background-image: url("../../../featured_products/jz68-stollen-6848167_1920.jpg");
+  background-image: url("/home_featured_category_products/jz68-stollen-6848167_1920.jpg");
 }
 
 .category-card__image--gifts {
-  background-image: url("../../../featured_products/seasonal_bakery.jpg");
+  background-image: url("/home_featured_category_products/seasonal_bakery.jpg");
 }
 
 /* ─── Card Body ───────────────────────────────────────── */
@@ -328,5 +328,7 @@
 .category-card:hover .category-card__link span {
   transform: translateX(4px);
 }
+
+
 
 
