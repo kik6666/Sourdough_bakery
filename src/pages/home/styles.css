@@ -1,3 +1,178 @@
 .page-title {
   letter-spacing: 0.02em;
 }
+
+/* ═══════════════════════════════════════════════════════
+   HERO SECTION
+   Full-bleed: breaks out of the page container.
+════════════════════════════════════════════════════════ */
+.home-hero {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  /* Cancel the container's top padding so hero sits flush under the navbar */
+  margin-top: calc(-1 * (var(--space-lg)));
+  min-height: clamp(460px, 78vh, 720px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: #1c130c;
+  background-image: url("../../../hero_section_image/hero2.jpg");
+  background-size: cover;
+  background-position: 72% center;
+  background-repeat: no-repeat;
+}
+
+@media (min-width: 768px) {
+  .home-hero {
+    margin-top: calc(-1 * (var(--space-2xl)));
+  }
+}
+
+/* Contrast overlay: darker on the left where the text sits */
+.home-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(20, 13, 8, 0.9) 0%,
+    rgba(20, 13, 8, 0.78) 32%,
+    rgba(20, 13, 8, 0.45) 60%,
+    rgba(20, 13, 8, 0.15) 100%
+  );
+}
+
+.home-hero__inner {
+  position: relative;
+  z-index: 1;
+  padding-top: var(--space-2xl);
+  padding-bottom: var(--space-2xl);
+}
+
+/* ─── Content ─────────────────────────────────────────── */
+.home-hero__content {
+  color: #f8f1e7;
+  max-width: 560px;
+}
+
+.home-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bakery-light-brown);
+  margin-bottom: var(--space-lg);
+}
+
+.home-hero__eyebrow-line {
+  width: 42px;
+  height: 2px;
+  background: var(--bakery-light-brown);
+  border-radius: var(--radius-full);
+}
+
+.home-hero__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2.1rem, 5vw, 3.6rem);
+  line-height: 1.12;
+  color: #fffaf2;
+  margin-bottom: var(--space-lg);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+}
+
+.home-hero__title-accent {
+  color: var(--bakery-light-brown);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.home-hero__text {
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.75;
+  color: rgba(248, 241, 231, 0.9);
+  margin-bottom: var(--space-xl);
+  max-width: 480px;
+}
+
+/* ─── CTAs ────────────────────────────────────────────── */
+.home-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.home-hero__btn-primary,
+.home-hero__btn-secondary {
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  font-size: 0.95rem;
+  padding: 0.8rem 1.9rem;
+  border-radius: var(--radius-md);
+  transition: transform var(--transition-fast), background-color var(--transition-fast),
+    border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.home-hero__btn-primary {
+  background: var(--bakery-accent);
+  border: 1.5px solid var(--bakery-accent);
+  color: #fff;
+}
+
+.home-hero__btn-primary:hover,
+.home-hero__btn-primary:focus {
+  background: var(--bakery-accent-hover);
+  border-color: var(--bakery-accent-hover);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.home-hero__btn-secondary {
+  background: transparent;
+  border: 1.5px solid rgba(248, 241, 231, 0.55);
+  color: #f8f1e7;
+}
+
+.home-hero__btn-secondary:hover,
+.home-hero__btn-secondary:focus {
+  background: rgba(248, 241, 231, 0.12);
+  border-color: #f8f1e7;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ─── Responsive ──────────────────────────────────────── */
+@media (max-width: 767.98px) {
+  .home-hero {
+    background-position: 68% center;
+    min-height: 78vh;
+    text-align: left;
+  }
+
+  .home-hero__overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(20, 13, 8, 0.72) 0%,
+      rgba(20, 13, 8, 0.82) 100%
+    );
+  }
+
+  .home-hero__actions {
+    flex-direction: column;
+  }
+
+  .home-hero__btn-primary,
+  .home-hero__btn-secondary {
+    width: 100%;
+    text-align: center;
+  }
+}
+
