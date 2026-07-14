@@ -14,4 +14,9 @@ export default defineConfig({
     host: true,
     port: 4173,
   },
+  build: {
+    // LightningCSS (Vite 8 default) crashes on Bootstrap's SVG data-URI
+    // pseudo-element syntax. Disabling CSS minification is safe for this project.
+    cssMinify: false,
+  },
 });

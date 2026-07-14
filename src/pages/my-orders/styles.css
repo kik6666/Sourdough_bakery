@@ -1,3 +1,169 @@
-.page-title {
-  letter-spacing: 0.02em;
+/* ═══════════════════════════════════════════════════════
+   MY ORDERS — CUSTOMER PAGE
+════════════════════════════════════════════════════════ */
+.myo-page-title {
+  font-family: var(--font-heading);
+  letter-spacing: 0.01em;
+}
+
+/* ─── Order card ────────────────────────────────────── */
+.myo-card {
+  background: var(--bakery-surface);
+  border: 1px solid var(--bakery-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+  transition: box-shadow var(--transition-base);
+}
+
+.myo-card:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.myo-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem 1.25rem;
+  background: var(--bakery-beige);
+  border-bottom: 1px solid var(--bakery-border);
+}
+
+.myo-card__id {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--bakery-accent-dark);
+  letter-spacing: 0.04em;
+}
+
+.myo-card__date {
+  font-size: 0.8rem;
+  color: var(--bakery-muted);
+}
+
+.myo-card__body {
+  padding: 1.1rem 1.25rem;
+}
+
+.myo-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  border-top: 1px solid var(--bakery-border-light);
+  background: var(--bakery-warm-white);
+}
+
+.myo-card__total {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--bakery-text);
+}
+
+/* ─── Status badge ──────────────────────────────────── */
+.myo-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.6rem;
+  border-radius: var(--radius-full);
+}
+
+.myo-badge--pending   { background: #fbe4cf; color: #8a4e1f; }
+.myo-badge--confirmed { background: #e9f5e9; color: #2f6f2f; }
+.myo-badge--preparing { background: #e8eef8; color: #2f5a8f; }
+.myo-badge--shipped   { background: #ece8f8; color: #5a2f8f; }
+.myo-badge--delivered { background: #e2f0e2; color: #1d5c1d; }
+.myo-badge--cancelled { background: #fde8e8; color: #8f2f2f; }
+
+/* ─── Items list ───────────────────────────────────── */
+.myo-items-toggle {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--bakery-accent);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.myo-items-toggle:hover {
+  color: var(--bakery-accent-hover);
+  text-decoration: underline;
+}
+
+.myo-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--bakery-border-light);
+  font-size: 0.9rem;
+}
+
+.myo-item-row:last-child {
+  border-bottom: none;
+}
+
+.myo-item-name {
+  color: var(--bakery-text);
+  font-weight: 500;
+}
+
+.myo-item-qty {
+  color: var(--bakery-muted);
+  font-size: 0.82rem;
+}
+
+.myo-item-price {
+  color: var(--bakery-text);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ─── Delivery chip ───────────────────────────────── */
+.myo-delivery-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--bakery-muted);
+  background: var(--bakery-beige);
+  border-radius: var(--radius-full);
+  padding: 0.2rem 0.65rem;
+}
+
+/* ─── Empty state ─────────────────────────────────── */
+.myo-empty {
+  text-align: center;
+  padding: var(--space-4xl) var(--space-xl);
+  background: var(--bakery-surface);
+  border: 1px solid var(--bakery-border);
+  border-radius: var(--radius-lg);
+}
+
+.myo-empty__icon {
+  font-size: 2.8rem;
+  margin-bottom: var(--space-lg);
+  opacity: 0.35;
+}
+
+.myo-empty__title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: var(--bakery-text);
+  margin-bottom: var(--space-sm);
 }
