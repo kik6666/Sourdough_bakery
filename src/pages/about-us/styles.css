@@ -1,3 +1,175 @@
-.page-title {
+/* Prevent #page-container padding from showing above the footer */
+#main-injector:has(.about-hero) #page-container,
+#layout-root:has(.about-hero) #site-main {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* ═══════════════════════════════════════════════════════
+   ABOUT US — FULL HERO
+   Single tall section: photo fills the frame, text lives
+   on the left over a directional dark overlay, baker
+   stays visible on the right.
+════════════════════════════════════════════════════════ */
+.about-hero {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: calc(-1 * var(--space-2xl));
+  margin-bottom: calc(-1 * var(--space-2xl));
+  min-height: clamp(560px, 88vh, 860px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: #1c130c;
+  background-image: url("/About_strip_section/About%20us/about%20us.jpg");
+  background-size: cover;
+  background-position: 30% center;
+  background-repeat: no-repeat;
+}
+
+/* Gradient darker on the right where text lives, baker visible on left */
+.about-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(20, 13, 8, 0.12) 0%,
+    rgba(20, 13, 8, 0.42) 42%,
+    rgba(20, 13, 8, 0.82) 65%,
+    rgba(20, 13, 8, 0.94) 100%
+  );
+}
+
+.about-hero__inner {
+  position: relative;
+  z-index: 1;
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-3xl);
+}
+
+/* ─── Content block ───────────────────────────────────── */
+.about-hero__content {
+  color: #f8f1e7;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* ─── Eyebrow ─────────────────────────────────────────── */
+.about-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bakery-light-brown);
+}
+
+.about-hero__eyebrow-line {
+  width: 42px;
+  height: 2px;
+  background: var(--bakery-light-brown);
+  border-radius: var(--radius-full);
+}
+
+/* ─── Title ───────────────────────────────────────────── */
+.about-hero__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2.1rem, 4.5vw, 3.6rem);
+  line-height: 1.12;
+  color: #fffaf2;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+  margin: 0;
+}
+
+.about-hero__title-accent {
+  color: var(--bakery-light-brown);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ─── Body text ───────────────────────────────────────── */
+.about-hero__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  max-width: 480px;
+}
+
+.about-hero__body p {
+  font-family: var(--font-body);
+  font-size: clamp(0.92rem, 1.3vw, 1.02rem);
+  line-height: 1.78;
+  color: rgba(248, 241, 231, 0.88);
+  margin: 0;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+}
+
+.about-hero__goal {
+  font-size: 1.02rem;
+  color: rgba(255, 250, 242, 0.95);
+}
+
+.about-hero__goal em {
+  font-style: italic;
+  color: var(--bakery-light-brown);
+  font-family: var(--font-heading);
+}
+
+/* ─── Badges ──────────────────────────────────────────── */
+.about-hero__badges {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-sm) 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm) var(--space-xl);
+  max-width: 420px;
+}
+
+.about-hero__badge {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.about-hero__badge-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.about-hero__badge-label {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(248, 241, 231, 0.9);
   letter-spacing: 0.02em;
 }
+
+/* ─── Responsive ──────────────────────────────────────── */
+@media (max-width: 767.98px) {
+  .about-hero {
+    margin-top: calc(-1 * var(--space-lg));
+    margin-bottom: calc(-1 * var(--space-lg));
+    background-position: 40% center;
+    min-height: clamp(500px, 92vh, 700px);
+  }
+
+  .about-hero__overlay {
+    background: rgba(20, 13, 8, 0.82);
+  }
+
+  .about-hero__badges {
+    grid-template-columns: 1fr;
+  }
+}
+

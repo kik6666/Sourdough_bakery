@@ -9,7 +9,9 @@ export function mountApp() {
   app.innerHTML = `
     <div id="layout-root" class="d-flex flex-column min-vh-100">
       <header id="site-header"></header>
-      ${renderMainContentShell()}
+      <div id="main-injector">
+        ${renderMainContentShell()}
+      </div>
       <footer id="site-footer" class="mt-auto"></footer>
     </div>
   `;

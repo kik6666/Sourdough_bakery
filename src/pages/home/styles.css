@@ -21,8 +21,8 @@
   overflow: hidden;
   background-color: #1c130c;
   background-image: url("/hero_section_image/hero2.jpg");
-  background-size: cover;
-  background-position: 72% center;
+  background-size: 80%; /* Adjusted to make bread smaller and zoom out */
+  background-position: center right;
   background-repeat: no-repeat;
 }
 
@@ -328,7 +328,3 @@
 .category-card:hover .category-card__link span {
   transform: translateX(4px);
 }
-
-
-
-
