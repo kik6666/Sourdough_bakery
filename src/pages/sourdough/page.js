@@ -6,5 +6,5 @@ export function render() {
 }
 
 export function mount() {
-  document.title = "Sourdough Bakery | Sourdough";
+  document.title = "Sourdough Bakery | Why Sourdough?";
 }

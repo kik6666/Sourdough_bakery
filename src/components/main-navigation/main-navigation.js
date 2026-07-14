@@ -1,7 +1,7 @@
 const primaryLinks = [
   { path: "/home", label: "Home" },
   { path: "/about-us", label: "About Us" },
-  { path: "/sourdough", label: "About Sourdough" },
+  { path: "/sourdough", label: "Why Sourdough?" },
   { path: "/products", label: "Products" },
   { path: "/recipes", label: "Recipes" },
   { path: "/good-to-know", label: "Good to Know" },

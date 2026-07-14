@@ -1,9 +1,119 @@
-<section class="row justify-content-center">
-  <div class="col-12 col-lg-10">
-    <div class="placeholder-card rounded-3 p-4 p-md-5 shadow-sm">
-      <h1 class="page-title h2 mb-3">Sourdough</h1>
-      <p class="lead mb-2">Public page scaffold</p>
-      <p class="mb-0 text-muted">This placeholder page is ready for incremental implementation.</p>
+<!-- ═══════════════════════════════════════════════════════
+     WHY SOURDOUGH? PAGE
+     Contained editorial layout, consistent with the Home page:
+     a centered intro header, then a softly framed photograph
+     beside a calm vertical list of benefits. Generous breathing
+     room; the image is framed rather than bleeding off-screen.
+════════════════════════════════════════════════════════ -->
+<section class="why-sourdough section" aria-labelledby="why-sourdough-title">
+
+  <!-- ─── Intro Header ─────────────────────────────────── -->
+  <header class="why-sourdough__header">
+    <span class="why-sourdough__eyebrow">
+      <span class="why-sourdough__eyebrow-line" aria-hidden="true"></span>
+      Why Sourdough?
+      <span class="why-sourdough__eyebrow-line" aria-hidden="true"></span>
+    </span>
+    <h1 id="why-sourdough-title" class="why-sourdough__title">
+      Why Choose <em>Sourdough?</em>
+    </h1>
+    <p class="why-sourdough__subtitle">
+      Five reasons to fall in love with naturally fermented bread &mdash;
+      slow-made, honest, and better in every way.
+    </p>
+  </header>
+
+  <!-- ─── Two-column body ──────────────────────────────── -->
+  <div class="why-sourdough__grid">
+
+    <!-- Framed photograph -->
+    <figure class="why-sourdough__figure">
+      <img
+        class="why-sourdough__image"
+        src="/About_strip_section/why sourdough/why choose sourdough2.jpg"
+        alt="Hands breaking open a rustic sourdough loaf to reveal its open, airy crumb"
+        loading="lazy"
+      />
+      <figcaption class="why-sourdough__caption">
+        Naturally Better. One Loaf at a Time.
+      </figcaption>
+    </figure>
+
+    <!-- Benefits -->
+    <div class="why-sourdough__content">
+      <ol class="why-sourdough__benefits" aria-label="Five benefits of sourdough bread">
+
+        <li class="why-sourdough__benefit">
+          <span class="why-sourdough__benefit-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3C9.24 3 7 5.24 7 8c0 2.1 1.23 3.91 3 4.78V18a2 2 0 0 0 4 0v-5.22A5.002 5.002 0 0 0 17 8c0-2.76-2.24-5-5-5z"/>
+            </svg>
+          </span>
+          <span class="why-sourdough__benefit-body">
+            <strong class="why-sourdough__benefit-title">Better Digestion</strong>
+            <span class="why-sourdough__benefit-text">Natural fermentation breaks down gluten, making sourdough gentler and easier to digest.</span>
+          </span>
+        </li>
+
+        <li class="why-sourdough__benefit">
+          <span class="why-sourdough__benefit-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="12" y1="2" x2="12" y2="22"/>
+              <path d="M9 6.5c0 0 1.5-1.5 3-1.5s3 1.5 3 1.5"/>
+              <path d="M7 10.5c0 0 2.5-2 5-2s5 2 5 2"/>
+              <path d="M9 14.5c0 0 1.5-1.5 3-1.5s3 1.5 3 1.5"/>
+            </svg>
+          </span>
+          <span class="why-sourdough__benefit-body">
+            <strong class="why-sourdough__benefit-title">Rich, Authentic Flavor</strong>
+            <span class="why-sourdough__benefit-text">Slow fermentation creates a deeper, more complex taste you simply cannot rush.</span>
+          </span>
+        </li>
+
+        <li class="why-sourdough__benefit">
+          <span class="why-sourdough__benefit-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M2 22c0-8 4.5-14 10-14 5.5 0 10 6 10 14"/>
+              <path d="M12 8c0 0-3 4-3 9"/>
+            </svg>
+          </span>
+          <span class="why-sourdough__benefit-body">
+            <strong class="why-sourdough__benefit-title">Naturally Made</strong>
+            <span class="why-sourdough__benefit-text">Simple ingredients and wild yeast &mdash; no additives, no shortcuts, no compromise.</span>
+          </span>
+        </li>
+
+        <li class="why-sourdough__benefit">
+          <span class="why-sourdough__benefit-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"/>
+              <polyline points="12 7 12 12 15 15"/>
+            </svg>
+          </span>
+          <span class="why-sourdough__benefit-body">
+            <strong class="why-sourdough__benefit-title">Longer Freshness</strong>
+            <span class="why-sourdough__benefit-text">Natural acidity preserves your loaf, keeping it soft and fresh far longer than regular bread.</span>
+          </span>
+        </li>
+
+        <li class="why-sourdough__benefit">
+          <span class="why-sourdough__benefit-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </span>
+          <span class="why-sourdough__benefit-body">
+            <strong class="why-sourdough__benefit-title">Healthier Choice</strong>
+            <span class="why-sourdough__benefit-text">Supports better blood sugar balance and delivers beneficial nutrients created during fermentation.</span>
+          </span>
+        </li>
+
+      </ol>
+
+      <p class="why-sourdough__stamp">
+        Simple Ingredients.&ensp;Extraordinary Bread.
+      </p>
     </div>
+
   </div>
 </section>

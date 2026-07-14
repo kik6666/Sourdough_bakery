@@ -1,3 +1,194 @@
-.page-title {
-  letter-spacing: 0.02em;
+/* ═══════════════════════════════════════════════════════
+   WHY SOURDOUGH? PAGE STYLES
+   Contained, spacious editorial layout that mirrors the Home
+   page rhythm: centered intro header, then a softly framed
+   photograph beside a calm vertical list of benefits.
+════════════════════════════════════════════════════════ */
+
+.why-sourdough {
+  /* Sits inside the page .container — no full-bleed breakout */
+}
+
+/* ─── Intro Header (centered, like the Home page) ─────── */
+.why-sourdough__header {
+  text-align: center;
+  max-width: 660px;
+  margin: 0 auto var(--space-3xl);
+}
+
+.why-sourdough__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bakery-accent);
+  margin-bottom: var(--space-md);
+}
+
+.why-sourdough__eyebrow-line {
+  display: inline-block;
+  width: 34px;
+  height: 2px;
+  background-color: var(--bakery-accent-light);
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.why-sourdough__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2.1rem, 4vw, 3.25rem);
+  line-height: 1.14;
+  color: var(--bakery-dark-brown);
+  margin-bottom: var(--space-md);
+  letter-spacing: -0.01em;
+}
+
+.why-sourdough__title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--bakery-accent);
+}
+
+.why-sourdough__subtitle {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--bakery-muted);
+  margin-bottom: 0;
+}
+
+/* ─── Two-column body ─────────────────────────────────── */
+.why-sourdough__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: var(--space-4xl);
+  align-items: center;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+/* ─── Framed photograph ───────────────────────────────── */
+.why-sourdough__figure {
+  margin: 0;
+  position: relative;
+}
+
+.why-sourdough__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--bakery-border-light);
+}
+
+.why-sourdough__caption {
+  margin-top: var(--space-md);
+  text-align: center;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--bakery-muted);
+}
+
+/* ─── Benefits List ───────────────────────────────────── */
+.why-sourdough__benefits {
+  list-style: none;
+  margin: 0 0 var(--space-xl);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.why-sourdough__benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+}
+
+.why-sourdough__benefit-icon {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1.5px solid var(--bakery-border);
+  background-color: var(--bakery-warm-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bakery-accent);
+  margin-top: 0.1rem;
+  transition: background-color var(--transition-base), border-color var(--transition-base),
+    transform var(--transition-base);
+}
+
+.why-sourdough__benefit:hover .why-sourdough__benefit-icon {
+  background-color: var(--bakery-beige);
+  border-color: var(--bakery-accent-light);
+  transform: translateY(-2px);
+}
+
+.why-sourdough__benefit-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-top: 0.35rem;
+}
+
+.why-sourdough__benefit-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--bakery-text);
+  line-height: 1.35;
+}
+
+.why-sourdough__benefit-text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--bakery-muted);
+}
+
+/* ─── Closing stamp ───────────────────────────────────── */
+.why-sourdough__stamp {
+  border-top: 1px solid var(--bakery-border);
+  padding-top: var(--space-lg);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bakery-muted);
+  margin-bottom: 0;
+}
+
+/* ─── Responsive ──────────────────────────────────────── */
+@media (max-width: 991.98px) {
+  .why-sourdough__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    max-width: 620px;
+  }
+
+  .why-sourdough__image {
+    aspect-ratio: 16 / 11;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .why-sourdough__benefits {
+    gap: var(--space-md);
+  }
+
+  .why-sourdough__image {
+    aspect-ratio: 4 / 3;
+  }
 }
