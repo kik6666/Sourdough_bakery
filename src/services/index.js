@@ -22,6 +22,7 @@ export {
 	getOrderById,
 	cancelOrder,
 	updateOrderStatus,
+	listAllOrders,
 } from "./order-service.js";
 export {
 	uploadProductImage,
@@ -34,4 +35,23 @@ export {
 export {
 	getPublishedArticles,
 	getArticleBySlug,
+	listArticles,
+	getArticleById,
+	createArticle,
+	updateArticle,
+	deleteArticle,
 } from "./article-service.js";
+export {
+	getPublishedRecipes,
+	getRecipeBySlug,
+	listRecipes,
+	getRecipeById,
+	createRecipe,
+	updateRecipe,
+	deleteRecipe,
+} from "./recipe-service.js";
+export {
+	listUsers,
+	updateUserProfile,
+	deleteUserProfile,
+} from "./user-service.js";

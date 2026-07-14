@@ -1,1 +1,114 @@
-/* Manage Users — Phase 8 placeholder styles */
+/* ═══════════════════════════════════════════════════════
+   MANAGE USERS — ADMIN PAGE
+════════════════════════════════════════════════════════ */
+.mu-page-title {
+  font-family: var(--font-heading);
+  letter-spacing: 0.01em;
+  color: var(--bakery-text);
+}
+
+.mu-role-filter,
+.mu-sort-select {
+  max-width: 160px;
+}
+
+@media (max-width: 575.98px) {
+  .mu-role-filter,
+  .mu-sort-select {
+    max-width: 100%;
+  }
+}
+
+.mu-table {
+  background: var(--bakery-surface);
+  border: 1px solid var(--bakery-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.mu-table thead th {
+  background: var(--bakery-beige);
+  border-bottom: 2px solid var(--bakery-border);
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bakery-muted);
+  padding: 0.85rem 1rem;
+  white-space: nowrap;
+}
+
+.mu-table tbody tr {
+  transition: background-color var(--transition-fast);
+}
+
+.mu-table tbody tr:hover {
+  background-color: var(--bakery-border-light);
+}
+
+.mu-table td {
+  padding: 0.85rem 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--bakery-border-light);
+}
+
+.mu-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ─── User cell ────────────────────────────────────── */
+.mu-user-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.mu-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--bakery-beige);
+}
+
+.mu-avatar-placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bakery-beige);
+  color: var(--bakery-muted);
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+
+/* ─── Role badge ────────────────────────────────────── */
+.mu-role-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+}
+
+.mu-role-badge--admin {
+  background: #fff3cd;
+  color: #7c5e10;
+}
+
+.mu-role-badge--customer {
+  background: var(--bakery-beige);
+  color: var(--bakery-muted);
+}
+
+.mu-field-error {
+  display: block;
+}

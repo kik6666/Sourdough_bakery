@@ -385,3 +385,37 @@ export async function updateOrderStatus(orderId, status) {
     return fail("ORDER_STATUS_UPDATE_FAILED", "Could not update order status.", error.message);
   }
 }
+
+/**
+ * Admin-only: list all orders with customer name and line items.
+ * @param {{ status?: string, order?: 'asc'|'desc' }} options
+ * @returns {Promise<{ok, data, error}>}
+ */
+export async function listAllOrders({ status = "", order = "desc" } = {}) {
+  try {
+    const authResult = await ensureAuthenticatedUser();
+    if (!authResult.ok) return authResult;
+
+    const user = authResult.data;
+    const isAdmin = await isCurrentUserAdmin(user.id);
+    if (!isAdmin) return fail("ADMIN_REQUIRED", "Only administrators can view all orders.");
+
+    let query = supabase
+      .from("orders")
+      .select(`
+        id, user_id, total_price, status, delivery_method, notes, created_at, updated_at,
+        profile:profiles(full_name),
+        items:order_items(id, quantity, unit_price, product:products(id, name))
+      `)
+      .order("created_at", { ascending: order === "asc" });
+
+    if (status) query = query.eq("status", status);
+
+    const { data, error } = await query;
+    if (error) throw error;
+
+    return ok(data ?? []);
+  } catch (err) {
+    return fail("ORDERS_FETCH_FAILED", "Could not load orders.", err.message);
+  }
+}

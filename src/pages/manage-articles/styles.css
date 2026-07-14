@@ -1,3 +1,105 @@
-.page-title {
+/* ═══════════════════════════════════════════════════════
+   MANAGE ARTICLES — ADMIN PAGE
+════════════════════════════════════════════════════════ */
+.ma-page-title {
+  font-family: var(--font-heading);
+  letter-spacing: 0.01em;
+  color: var(--bakery-text);
+}
+
+/* ─── Controls ──────────────────────────────────────── */
+.ma-sort-select {
+  max-width: 180px;
+}
+
+@media (max-width: 575.98px) {
+  .ma-sort-select {
+    max-width: 100%;
+  }
+}
+
+/* ─── Table ─────────────────────────────────────────── */
+.ma-table {
+  background: var(--bakery-surface);
+  border: 1px solid var(--bakery-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.ma-table thead th {
+  background: var(--bakery-beige);
+  border-bottom: 2px solid var(--bakery-border);
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bakery-muted);
+  padding: 0.85rem 1rem;
+  white-space: nowrap;
+}
+
+.ma-table tbody tr {
+  transition: background-color var(--transition-fast);
+}
+
+.ma-table tbody tr:hover {
+  background-color: var(--bakery-border-light);
+}
+
+.ma-table td {
+  padding: 0.85rem 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--bakery-border-light);
+}
+
+.ma-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ─── Title cell ────────────────────────────────────── */
+.ma-title-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.ma-thumb {
+  width: 52px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  background: var(--bakery-beige);
+}
+
+.ma-thumb-placeholder {
+  display: inline-block;
+  width: 52px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--bakery-beige);
+  flex-shrink: 0;
+}
+
+.ma-slug-badge {
+  font-size: 0.72rem;
+  color: var(--bakery-muted);
+  background: var(--bakery-beige);
+  padding: 0.1rem 0.45rem;
+  border-radius: var(--radius-sm);
   letter-spacing: 0.02em;
+}
+
+/* ─── Form modal ────────────────────────────────────── */
+.ma-content-field {
+  resize: vertical;
+  min-height: 140px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.ma-field-error {
+  display: block;
 }

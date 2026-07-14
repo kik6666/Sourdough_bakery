@@ -1,9 +1,171 @@
-<section class="row justify-content-center">
-  <div class="col-12 col-lg-10">
-    <div class="placeholder-card rounded-3 p-4 p-md-5 shadow-sm">
-      <h1 class="page-title h2 mb-3">Manage Articles</h1>
-      <p class="lead mb-2">Admin page scaffold</p>
-      <p class="mb-0 text-muted">This placeholder page is ready for incremental implementation.</p>
+<div id="ma-root">
+
+  <!-- ─── Page Header ──────────────────────────────────── -->
+  <div class="d-flex align-items-start align-items-sm-center justify-content-between
+              flex-column flex-sm-row gap-3 mb-4">
+    <div>
+      <h1 class="ma-page-title h3 mb-1">Manage Articles</h1>
+      <p class="text-muted small mb-0">Create, edit and remove Good to Know articles.</p>
+    </div>
+    <button class="btn btn-primary flex-shrink-0" id="ma-new-btn" type="button">
+      + New Article
+    </button>
+  </div>
+
+  <!-- ─── Page-level alerts ─────────────────────────── -->
+  <div id="ma-page-alerts" role="status" aria-live="polite"></div>
+
+  <!-- ─── Controls ───────────────────────────────────── -->
+  <div class="d-flex flex-column flex-sm-row gap-2 mb-4">
+    <input
+      type="search"
+      id="ma-search"
+      class="form-control"
+      placeholder="Search by title or slug…"
+      aria-label="Search articles"
+    />
+    <select id="ma-sort-select" class="form-select ma-sort-select" aria-label="Sort order">
+      <option value="desc">Newest first</option>
+      <option value="asc">Oldest first</option>
+    </select>
+  </div>
+
+  <!-- ─── Table ──────────────────────────────────────── -->
+  <div class="table-responsive">
+    <table class="table ma-table align-middle">
+      <thead>
+        <tr>
+          <th scope="col">Article</th>
+          <th scope="col" class="d-none d-lg-table-cell">Summary</th>
+          <th scope="col" class="d-none d-md-table-cell">Created</th>
+          <th scope="col" class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="ma-table-body">
+        <!-- rows injected by JS -->
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ═══ Form Modal ══════════════════════════════════════════════ -->
+<div
+  class="modal fade"
+  id="ma-form-modal"
+  tabindex="-1"
+  aria-labelledby="ma-form-modal-title"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="ma-form-modal-title">New Article</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="ma-modal-alerts" role="alert" aria-live="polite" class="mb-2"></div>
+        <form id="ma-article-form" class="ma-form" novalidate>
+
+          <!-- Title -->
+          <div class="mb-3">
+            <label for="ma-field-title" class="form-label fw-semibold">
+              Title <span class="text-danger" aria-hidden="true">*</span>
+            </label>
+            <input type="text" id="ma-field-title" class="form-control"
+                   maxlength="255" autocomplete="off" required />
+            <div id="ma-field-title-error" class="invalid-feedback ma-field-error"></div>
+          </div>
+
+          <!-- Slug -->
+          <div class="mb-3">
+            <label for="ma-field-slug" class="form-label fw-semibold">
+              Slug <span class="text-danger" aria-hidden="true">*</span>
+            </label>
+            <input type="text" id="ma-field-slug" class="form-control"
+                   maxlength="255" autocomplete="off"
+                   pattern="[a-z0-9]+(?:-[a-z0-9]+)*" required />
+            <div id="ma-field-slug-error" class="invalid-feedback ma-field-error"></div>
+            <div class="form-text">Lowercase letters, numbers and hyphens only &mdash; auto-generated from title on create.</div>
+          </div>
+
+          <!-- Summary -->
+          <div class="mb-3">
+            <label for="ma-field-summary" class="form-label fw-semibold">Summary</label>
+            <input type="text" id="ma-field-summary" class="form-control" maxlength="400" />
+            <div class="form-text">Short description shown on article cards (optional but recommended).</div>
+          </div>
+
+          <!-- Content -->
+          <div class="mb-3">
+            <label for="ma-field-content" class="form-label fw-semibold">
+              Content <span class="text-danger" aria-hidden="true">*</span>
+            </label>
+            <textarea id="ma-field-content" class="form-control ma-content-field"
+                      rows="8" required></textarea>
+            <div id="ma-field-content-error" class="invalid-feedback ma-field-error"></div>
+          </div>
+
+          <!-- Image URL + upload -->
+          <div class="mb-1">
+            <label for="ma-field-image-url" class="form-label fw-semibold">Image URL</label>
+            <div class="input-group">
+              <input type="url" id="ma-field-image-url" class="form-control"
+                     placeholder="https://…" autocomplete="off" />
+              <button type="button" class="btn btn-outline-secondary"
+                      id="ma-upload-btn" aria-label="Upload image file">
+                Upload
+              </button>
+            </div>
+            <input type="file" id="ma-image-file"
+                   accept="image/jpeg,image/png,image/webp"
+                   class="d-none" aria-hidden="true" tabindex="-1" />
+            <div id="ma-upload-status" class="form-text"></div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary"
+                data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" form="ma-article-form"
+                id="ma-form-submit-btn" class="btn btn-primary">
+          Save article
+        </button>
+      </div>
     </div>
   </div>
-</section>
+</div>
+
+<!-- ═══ Delete Confirm Modal ════════════════════════════════════ -->
+<div
+  class="modal fade"
+  id="ma-delete-modal"
+  tabindex="-1"
+  aria-labelledby="ma-delete-modal-label"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header border-0 pb-0">
+        <h2 class="modal-title fs-5" id="ma-delete-modal-label">Delete Article?</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body pt-2">
+        <div id="ma-delete-alert" class="mb-2"></div>
+        <p class="mb-0 text-muted">
+          You are about to permanently delete
+          <strong id="ma-delete-article-title"></strong>.
+          This action cannot be undone.
+        </p>
+      </div>
+      <div class="modal-footer border-0 pt-0">
+        <button type="button" class="btn btn-outline-secondary"
+                data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger"
+                id="ma-delete-confirm-btn">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+

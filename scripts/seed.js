@@ -563,6 +563,75 @@ async function seedArticles(adminId) {
   }
 }
 
+async function seedOrders(adminId) {
+  if (!adminId) {
+    console.log("No admin profile found — skipping order seed.");
+    return;
+  }
+
+  const { data: existing } = await supabase.from("orders").select("id").limit(1);
+  if (existing?.length > 0) {
+    console.log("Orders already exist — skipping order seed.");
+    return;
+  }
+
+  const { data: products, error: productsError } = await supabase
+    .from("products")
+    .select("id, price, name")
+    .eq("is_active", true)
+    .limit(10);
+
+  if (productsError || !products?.length) {
+    console.log("No products found — skipping order seed.");
+    return;
+  }
+
+  const now = Date.now();
+  const h = (n) => new Date(now - n * 60 * 60 * 1000).toISOString();
+  const d = (n) => new Date(now - n * 24 * 60 * 60 * 1000).toISOString();
+
+  const ordersData = [
+    { user_id: adminId, status: "pending",   total_price: 34.50, delivery_method: "pickup",   notes: null,                             created_at: h(2)  },
+    { user_id: adminId, status: "confirmed",  total_price: 21.90, delivery_method: "delivery", notes: "Please ring doorbell twice.",     created_at: h(5)  },
+    { user_id: adminId, status: "preparing",  total_price: 58.00, delivery_method: "delivery", notes: null,                             created_at: h(18) },
+    { user_id: adminId, status: "confirmed",  total_price: 44.30, delivery_method: "pickup",   notes: "Gluten-free bag if possible.",   created_at: h(9)  },
+    { user_id: adminId, status: "delivered",  total_price: 17.20, delivery_method: "pickup",   notes: null,                             created_at: d(2)  },
+    { user_id: adminId, status: "delivered",  total_price: 63.80, delivery_method: "delivery", notes: "Leave at the door.",             created_at: d(3)  },
+    { user_id: adminId, status: "cancelled",  total_price: 12.50, delivery_method: "delivery", notes: "Changed my mind.",               created_at: d(4)  },
+    { user_id: adminId, status: "pending",    total_price: 29.70, delivery_method: "delivery", notes: null,                             created_at: h(1)  },
+  ];
+
+  const { data: insertedOrders, error: ordersError } = await supabase
+    .from("orders")
+    .insert(ordersData)
+    .select("id");
+
+  if (ordersError) {
+    throw new Error(`Failed to seed orders: ${formatSupabaseError(ordersError)}`);
+  }
+
+  const itemsData = [];
+  insertedOrders.forEach((order, i) => {
+    const itemCount = (i % 3) + 1;
+    for (let j = 0; j < itemCount; j++) {
+      const product = products[(i * 2 + j) % products.length];
+      itemsData.push({
+        order_id: order.id,
+        product_id: product.id,
+        quantity: j === 0 ? 2 : 1,
+        unit_price: product.price,
+      });
+    }
+  });
+
+  const { error: itemsError } = await supabase.from("order_items").insert(itemsData);
+  if (itemsError) {
+    throw new Error(`Failed to seed order items: ${formatSupabaseError(itemsError)}`);
+  }
+
+  console.log(`Seeded ${insertedOrders.length} orders with ${itemsData.length} items.`);
+}
+
 async function main() {
   console.log("Starting seed...");
 
@@ -572,6 +641,7 @@ async function main() {
   const adminId = await getAdminIdOrNull();
   await seedRecipes(adminId);
   await seedArticles(adminId);
+  await seedOrders(adminId);
 
   const afterCounts = await getSafeTableStats();
   console.log("Seeding completed.");

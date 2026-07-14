@@ -1,10 +1,159 @@
-<div class="container">
-  <div class="placeholder-card rounded-3 p-4 p-md-5 shadow-sm">
-    <h1 class="page-title h2 mb-3">Manage Users</h1>
-    <p class="lead mb-2">Admin page &ndash; Phase 8</p>
-    <p class="mb-0 text-muted">
-      User management (view, deactivate, delete inactive accounts) will be implemented here.
-    </p>
-    <a href="#/admin-dashboard" class="btn btn-bakery-outline mt-4 d-inline-block">&larr; Back to Dashboard</a>
+<div id="mu-root">
+
+  <!-- ─── Page Header ──────────────────────────────────── -->
+  <div class="d-flex align-items-start align-items-sm-center justify-content-between
+              flex-column flex-sm-row gap-3 mb-3">
+    <div>
+      <h1 class="mu-page-title h3 mb-1">Manage Users</h1>
+      <p class="text-muted small mb-0">View and manage registered customer and admin accounts.</p>
+    </div>
+  </div>
+
+  <div class="alert alert-info alert-sm py-2 mb-4 small" role="note">
+    New users register through the website. Edit to change a user&rsquo;s role or details.
+    Deleting removes profile access but does not remove the auth account.
+  </div>
+
+  <!-- ─── Page-level alerts ─────────────────────────── -->
+  <div id="mu-page-alerts" role="status" aria-live="polite"></div>
+
+  <!-- ─── Controls ───────────────────────────────────── -->
+  <div class="d-flex flex-column flex-sm-row gap-2 mb-4">
+    <input
+      type="search"
+      id="mu-search"
+      class="form-control"
+      placeholder="Search by name…"
+      aria-label="Search users"
+    />
+    <select id="mu-role-filter" class="form-select mu-role-filter" aria-label="Filter by role">
+      <option value="">All roles</option>
+      <option value="customer">Customers</option>
+      <option value="administrator">Admins</option>
+    </select>
+    <select id="mu-sort-select" class="form-select mu-sort-select" aria-label="Sort order">
+      <option value="desc">Newest first</option>
+      <option value="asc">Oldest first</option>
+    </select>
+  </div>
+
+  <!-- ─── Table ──────────────────────────────────────── -->
+  <div class="table-responsive">
+    <table class="table mu-table align-middle">
+      <thead>
+        <tr>
+          <th scope="col">User</th>
+          <th scope="col">Role</th>
+          <th scope="col" class="d-none d-md-table-cell">Phone</th>
+          <th scope="col" class="d-none d-lg-table-cell">Joined</th>
+          <th scope="col" class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="mu-table-body">
+        <!-- rows injected by JS -->
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ═══ Edit User Modal ═════════════════════════════════════════ -->
+<div
+  class="modal fade"
+  id="mu-edit-modal"
+  tabindex="-1"
+  aria-labelledby="mu-edit-modal-title"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="mu-edit-modal-title">Edit User</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="mu-modal-alerts" role="alert" aria-live="polite" class="mb-2"></div>
+        <form id="mu-edit-form" class="mu-form" novalidate>
+
+          <!-- Full name -->
+          <div class="mb-3">
+            <label for="mu-field-name" class="form-label fw-semibold">
+              Full Name <span class="text-danger" aria-hidden="true">*</span>
+            </label>
+            <input type="text" id="mu-field-name" class="form-control"
+                   maxlength="200" autocomplete="off" required />
+            <div id="mu-field-name-error" class="invalid-feedback mu-field-error"></div>
+          </div>
+
+          <!-- Role -->
+          <div class="mb-3">
+            <label for="mu-field-role" class="form-label fw-semibold">Role</label>
+            <select id="mu-field-role" class="form-select">
+              <option value="customer">Customer</option>
+              <option value="administrator">Administrator</option>
+            </select>
+            <div class="form-text text-warning-emphasis">
+              Changing to Administrator grants full admin panel access.
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="mb-3">
+            <label for="mu-field-phone" class="form-label fw-semibold">Phone</label>
+            <input type="tel" id="mu-field-phone" class="form-control"
+                   maxlength="40" autocomplete="off" />
+          </div>
+
+          <!-- Address -->
+          <div class="mb-1">
+            <label for="mu-field-address" class="form-label fw-semibold">Address</label>
+            <textarea id="mu-field-address" class="form-control" rows="3"
+                      maxlength="500"></textarea>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary"
+                data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" form="mu-edit-form"
+                id="mu-edit-submit-btn" class="btn btn-primary">
+          Save changes
+        </button>
+      </div>
+    </div>
   </div>
 </div>
+
+<!-- ═══ Delete Confirm Modal ════════════════════════════════════ -->
+<div
+  class="modal fade"
+  id="mu-delete-modal"
+  tabindex="-1"
+  aria-labelledby="mu-delete-modal-label"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header border-0 pb-0">
+        <h2 class="modal-title fs-5" id="mu-delete-modal-label">Delete User?</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body pt-2">
+        <div id="mu-delete-alert" class="mb-2"></div>
+        <p class="mb-0 text-muted">
+          Remove profile for <strong id="mu-delete-user-name"></strong>?
+          Their auth account will remain but they will lose all app access.
+          This cannot be undone.
+        </p>
+      </div>
+      <div class="modal-footer border-0 pt-0">
+        <button type="button" class="btn btn-outline-secondary"
+                data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger"
+                id="mu-delete-confirm-btn">Delete profile</button>
+      </div>
+    </div>
+  </div>
+</div>
+

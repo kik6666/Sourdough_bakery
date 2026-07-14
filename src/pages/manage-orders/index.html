@@ -1,9 +1,109 @@
-<section class="row justify-content-center">
-  <div class="col-12 col-lg-10">
-    <div class="placeholder-card rounded-3 p-4 p-md-5 shadow-sm">
-      <h1 class="page-title h2 mb-3">Manage Orders</h1>
-      <p class="lead mb-2">Admin page scaffold</p>
-      <p class="mb-0 text-muted">This placeholder page is ready for incremental implementation.</p>
+<section class="manage-orders" aria-labelledby="manage-orders-title">
+  <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3 mb-4">
+    <div>
+      <h1 id="manage-orders-title" class="mo-title h3 mb-1">Manage Orders</h1>
+      <p class="text-muted mb-0">Admin overview for orders and status tracking.</p>
     </div>
   </div>
+
+  <div id="mo-page-alerts" role="status" aria-live="polite"></div>
+  <div id="mo-upload-feedback" aria-live="polite"></div>
+
+  <!-- Stat cards -->
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-md-4">
+      <article class="mo-stat-card">
+        <p class="mo-stat-label mb-1">Pending</p>
+        <p class="mo-stat-value mb-0" id="mo-stat-pending">&mdash;</p>
+      </article>
+    </div>
+    <div class="col-12 col-md-4">
+      <article class="mo-stat-card">
+        <p class="mo-stat-label mb-1">In Progress</p>
+        <p class="mo-stat-value mb-0" id="mo-stat-inprogress">&mdash;</p>
+      </article>
+    </div>
+    <div class="col-12 col-md-4">
+      <article class="mo-stat-card">
+        <p class="mo-stat-label mb-1">Total Orders</p>
+        <p class="mo-stat-value mb-0" id="mo-stat-total">&mdash;</p>
+      </article>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="row g-2 mb-3">
+    <div class="col-12 col-lg-4">
+      <input id="mo-search" class="form-control" type="search"
+             placeholder="Search by customer name or order ID…" aria-label="Search orders" />
+    </div>
+    <div class="col-6 col-lg-2">
+      <select id="mo-status-filter" class="form-select" aria-label="Filter by status">
+        <option value="">All statuses</option>
+        <option value="pending">Pending</option>
+        <option value="confirmed">Confirmed</option>
+        <option value="preparing">Preparing</option>
+        <option value="shipped">Shipped</option>
+        <option value="delivered">Delivered</option>
+        <option value="cancelled">Cancelled</option>
+      </select>
+    </div>
+    <div class="col-6 col-lg-2">
+      <select id="mo-delivery-filter" class="form-select" aria-label="Filter by delivery">
+        <option value="">All delivery</option>
+        <option value="pickup">Pickup</option>
+        <option value="delivery">Delivery</option>
+      </select>
+    </div>
+    <div class="col-12 col-lg-2">
+      <select id="mo-sort-select" class="form-select" aria-label="Sort orders">
+        <option value="desc">Newest first</option>
+        <option value="asc">Oldest first</option>
+      </select>
+    </div>
+    <div class="col-12 col-lg-2">
+      <button id="mo-reset-btn" class="btn btn-outline-secondary w-100" type="button">Reset</button>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="table-responsive mo-table-wrap">
+    <table class="table align-middle mb-0">
+      <thead>
+        <tr>
+          <th scope="col">Order</th>
+          <th scope="col">Customer</th>
+          <th scope="col" class="text-end">Total</th>
+          <th scope="col">Status</th>
+          <th scope="col" class="d-none d-md-table-cell">Delivery</th>
+          <th scope="col" class="d-none d-lg-table-cell">Date</th>
+          <th scope="col" class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="mo-table-body">
+        <!-- rows injected by JS -->
+      </tbody>
+    </table>
+  </div>
+
+  <input id="mo-receipt-input" type="file" class="d-none" accept="application/pdf,image/*"
+         aria-label="Upload receipt file" tabindex="-1" />
 </section>
+
+<!-- Order Detail Modal -->
+<div class="modal fade" id="mo-detail-modal" tabindex="-1"
+     aria-labelledby="mo-detail-modal-title" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="mo-detail-modal-title">Order Details</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="mo-detail-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
