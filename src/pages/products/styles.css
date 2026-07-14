@@ -138,9 +138,14 @@
   font-weight: 700;
   font-size: clamp(1.3rem, 2.4vw, 1.8rem);
   color: var(--bakery-text);
+  text-align: center;
   margin-bottom: var(--space-xl);
   padding-bottom: var(--space-sm);
   border-bottom: 2px solid var(--bakery-border);
+}
+
+.products-category .row {
+  justify-content: center;
 }
 
 /* ═══════════════════════════════════════════════════════

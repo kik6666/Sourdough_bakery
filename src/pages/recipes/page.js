@@ -6,5 +6,17 @@ export function render() {
 }
 
 export function mount() {
-  document.title = "Sourdough Bakery | Recipes";
+  document.title = "Sourdough Bakery | Recipes & Guides";
+
+  const container = document.getElementById("page-container");
+  if (container) {
+    container.classList.remove("py-4", "py-md-5");
+  }
+}
+
+export function unmount() {
+  const container = document.getElementById("page-container");
+  if (container) {
+    container.classList.add("py-4", "py-md-5");
+  }
 }

@@ -1,9 +1,251 @@
-<section class="row justify-content-center">
-  <div class="col-12 col-lg-10">
-    <div class="placeholder-card rounded-3 p-4 p-md-5 shadow-sm">
-      <h1 class="page-title h2 mb-3">Recipes</h1>
-      <p class="lead mb-2">Public page scaffold</p>
-      <p class="mb-0 text-muted">This placeholder page is ready for incremental implementation.</p>
+<!-- ═══════════════════════════════════════════════════════
+     RECIPES PAGE HEADER
+════════════════════════════════════════════════════════ -->
+<section class="recipes-header" aria-labelledby="recipes-page-title">
+  <div class="recipes-header__overlay" aria-hidden="true"></div>
+  <div class="container">
+    <div class="recipes-header__inner">
+      <span class="recipes-header__eyebrow">
+        <span class="recipes-header__eyebrow-line" aria-hidden="true"></span>
+        From Our Bakery Kitchen
+      </span>
+      <h1 id="recipes-page-title" class="recipes-header__title">Recipes &amp; Guides</h1>
+      <p class="recipes-header__subtitle">
+        Step-by-step guides for baking real sourdough at home &mdash;
+        written for beginners and seasoned bakers alike.
+      </p>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     RECIPES LISTING
+════════════════════════════════════════════════════════ -->
+<section class="recipes-list section" aria-label="Recipe articles">
+  <div class="container">
+
+    <!-- ─── RECIPE 1: Beginner Starter Guide ─────────── -->
+    <article class="recipe-article" id="recipe-sourdough-starter" aria-labelledby="recipe-starter-title">
+
+      <div class="recipe-article__hero">
+        <img
+          class="recipe-article__hero-img"
+          src="/recipes/how_to_start_sorodough.jpg"
+          alt="A glass jar with active sourdough starter, bubbling and ready to use"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="recipe-article__body">
+
+        <header class="recipe-article__header">
+          <span class="recipe-article__tag">Beginner Guide</span>
+          <h2 id="recipe-starter-title" class="recipe-article__title">
+            How to Make Your Own Sourdough Starter
+          </h2>
+          <p class="recipe-article__intro">
+            A sourdough starter is a living culture of wild yeast and bacteria that gives sourdough
+            bread its distinctive flavour and lift. With just flour, water, and patience, you can
+            grow your own from scratch in 5&ndash;7 days.
+          </p>
+          <div class="recipe-article__meta">
+            <span class="recipe-article__meta-item">
+              <strong>Time:</strong> 5&ndash;7 days (10 min/day)
+            </span>
+            <span class="recipe-article__meta-item">
+              <strong>Yield:</strong> 1 active starter (~200 g)
+            </span>
+            <span class="recipe-article__meta-item">
+              <strong>Difficulty:</strong> Beginner
+            </span>
+          </div>
+        </header>
+
+        <div class="recipe-article__section">
+          <h3 class="recipe-article__section-title">What You Need</h3>
+          <ul class="recipe-article__list">
+            <li>Whole wheat or rye flour (for Day 1&ndash;2)</li>
+            <li>All-purpose or bread flour (for ongoing feedings)</li>
+            <li>Unchlorinated water (filtered or left overnight)</li>
+            <li>A clean glass jar (500 ml or larger)</li>
+            <li>A loose lid, cloth, or cling film with holes</li>
+            <li>A kitchen scale</li>
+          </ul>
+        </div>
+
+        <div class="recipe-article__section">
+          <h3 class="recipe-article__section-title">Step-by-Step Method</h3>
+          <ol class="recipe-article__steps">
+            <li>
+              <strong>Day 1 &mdash; Mix:</strong> Combine 50 g whole wheat flour and 50 g water
+              (room temperature) in a clean jar. Stir well until no dry flour remains. Cover loosely
+              and leave at room temperature (21&ndash;24 &deg;C).
+            </li>
+            <li>
+              <strong>Days 2&ndash;3 &mdash; Discard and feed:</strong> Discard half the starter
+              (~50 g). Add 50 g all-purpose flour and 50 g water. Stir well, cover, and leave 24 h.
+              You may see small bubbles beginning to form.
+            </li>
+            <li>
+              <strong>Days 4&ndash;5 &mdash; Activity rises:</strong> Repeat the discard and feed
+              process. The starter should now smell slightly tangy. Bubbles and a slight dome are
+              signs of healthy fermentation.
+            </li>
+            <li>
+              <strong>Days 6&ndash;7 &mdash; Ready test:</strong> Your starter is active when it
+              doubles in size within 4&ndash;8 hours of a feeding and passes the float test &mdash;
+              drop a small spoonful into water; if it floats, it is ready to bake with.
+            </li>
+            <li>
+              <strong>Ongoing maintenance:</strong> Feed once a day at room temperature, or weekly
+              in the fridge if you bake less often.
+            </li>
+          </ol>
+        </div>
+
+        <div class="recipe-article__section">
+          <h3 class="recipe-article__section-title">Baker's Tips</h3>
+          <ul class="recipe-article__list recipe-article__list--tips">
+            <li>Warmer environments speed up fermentation; cooler rooms slow it down.</li>
+            <li>A consistent feed time each day helps build a reliable starter rhythm.</li>
+            <li>Use a rubber band to mark rise level so you can measure growth easily.</li>
+            <li>If pink or orange streaks appear, discard and start fresh &mdash; that is mould.</li>
+          </ul>
+        </div>
+
+        <div class="recipe-article__actions">
+          <a
+            class="recipe-article__download"
+            href="/recipes/how_to_start_sorodough.jpg"
+            download="sourdough-starter-guide.jpg"
+            aria-label="Download printable Sourdough Starter Guide image"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download Printable Recipe
+          </a>
+        </div>
+
+      </div>
+    </article>
+
+    <hr class="recipes-divider" aria-hidden="true" />
+
+    <!-- ─── RECIPE 2: Garlic Sourdough Crackers ───────── -->
+    <article class="recipe-article" id="recipe-garlic-crackers" aria-labelledby="recipe-crackers-title">
+
+      <div class="recipe-article__hero recipe-article__hero--right">
+        <img
+          class="recipe-article__hero-img"
+          src="/recipes/garlic_crackers.jpg"
+          alt="Thin crispy sourdough crackers on a wooden board with herbs and olive oil"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="recipe-article__body">
+
+        <header class="recipe-article__header">
+          <span class="recipe-article__tag">Easy Recipe</span>
+          <h2 id="recipe-crackers-title" class="recipe-article__title">
+            Garlic Sourdough Crackers
+          </h2>
+          <p class="recipe-article__intro">
+            A brilliant way to use sourdough discard &mdash; these thin, crispy crackers are loaded
+            with roasted garlic flavour and a satisfying crunch. Ready in under an hour and
+            impossible to stop eating.
+          </p>
+          <div class="recipe-article__meta">
+            <span class="recipe-article__meta-item">
+              <strong>Prep:</strong> 10 min
+            </span>
+            <span class="recipe-article__meta-item">
+              <strong>Bake:</strong> 25&ndash;30 min at 180 &deg;C
+            </span>
+            <span class="recipe-article__meta-item">
+              <strong>Yield:</strong> ~40 crackers
+            </span>
+            <span class="recipe-article__meta-item">
+              <strong>Difficulty:</strong> Easy
+            </span>
+          </div>
+        </header>
+
+        <div class="recipe-article__section">
+          <h3 class="recipe-article__section-title">Ingredients</h3>
+          <ul class="recipe-article__list">
+            <li>200 g sourdough discard (unfed starter)</li>
+            <li>60 g all-purpose flour</li>
+            <li>30 g olive oil</li>
+            <li>2 cloves garlic, finely grated or minced</li>
+            <li>1 tsp fine sea salt</li>
+            <li>1 tsp dried rosemary or mixed herbs (optional)</li>
+            <li>Flaky salt and extra herbs for topping</li>
+          </ul>
+        </div>
+
+        <div class="recipe-article__section">
+          <h3 class="recipe-article__section-title">Method</h3>
+          <ol class="recipe-article__steps">
+            <li>
+              <strong>Mix the dough:</strong> In a bowl, combine sourdough discard, flour, olive oil,
+              garlic, salt, and herbs. Stir until a smooth, slightly sticky dough forms.
+            </li>
+            <li>
+              <strong>Roll thin:</strong> Place the dough between two sheets of baking parchment.
+              Roll out as thin as possible &mdash; aim for 2&ndash;3 mm. Thin crackers will be
+              crispier and more even.
+            </li>
+            <li>
+              <strong>Score and top:</strong> Remove the top sheet of parchment. Cut the dough into
+              rough rectangles or squares with a pizza cutter or sharp knife. Brush lightly with
+              olive oil and scatter flaky salt and extra herbs over the top.
+            </li>
+            <li>
+              <strong>Bake:</strong> Transfer the crackers (still on parchment) to a baking sheet.
+              Bake at 180 &deg;C (160 &deg;C fan / gas 4) for 25&ndash;30 minutes until golden and
+              crisp. Edges will colour first &mdash; watch carefully in the last 5 minutes.
+            </li>
+            <li>
+              <strong>Cool and store:</strong> Leave to cool on the tray. They will crisp up further
+              as they cool. Store in an airtight tin for up to a week.
+            </li>
+          </ol>
+        </div>
+
+        <div class="recipe-article__section">
+          <h3 class="recipe-article__section-title">Baker's Tips</h3>
+          <ul class="recipe-article__list recipe-article__list--tips">
+            <li>Use discard straight from the fridge &mdash; no need to bring to room temperature.</li>
+            <li>Add seeds (sesame, poppy, caraway) for extra flavour and crunch.</li>
+            <li>For a richer flavour, substitute 15 g of the olive oil with garlic-infused oil.</li>
+            <li>If your discard is very liquid, reduce olive oil to 20 g so the dough is rollable.</li>
+          </ul>
+        </div>
+
+        <div class="recipe-article__actions">
+          <a
+            class="recipe-article__download"
+            href="/recipes/garlic_crackers.jpg"
+            download="garlic-sourdough-crackers-recipe.jpg"
+            aria-label="Download printable Garlic Sourdough Crackers recipe image"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download Printable Recipe
+          </a>
+        </div>
+
+      </div>
+    </article>
+
   </div>
 </section>
