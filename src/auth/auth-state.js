@@ -73,7 +73,20 @@ export async function initAuthState() {
   if (initPromise) return initPromise;
 
   initPromise = (async () => {
-    const session = await getSession();
+    let session = null;
+    try {
+      session = await getSession();
+    } catch (err) {
+      console.warn("[AuthState] Could not retrieve session, defaulting to guest:", err);
+      setState({
+        isInitialized: true,
+        isAuthenticated: false,
+        user: null,
+        profile: null,
+        role: "guest",
+      });
+      return;
+    }
     await hydrateFromSession(session);
 
     if (!authSubscription) {

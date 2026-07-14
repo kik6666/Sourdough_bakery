@@ -52,9 +52,12 @@ async function renderRoute() {
 }
 
 export function initRouter() {
-  initAuthState().then(() => {
-    renderRoute();
-  });
+  initAuthState()
+    .then(() => renderRoute())
+    .catch((err) => {
+      console.warn("[Router] Auth init failed, rendering as guest:", err);
+      renderRoute();
+    });
 
   subscribeAuthState(() => {
     renderRoute();
