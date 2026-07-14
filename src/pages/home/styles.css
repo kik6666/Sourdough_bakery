@@ -13,8 +13,7 @@
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  /* Cancel the container's top padding so hero sits flush under the navbar */
-  margin-top: calc(-1 * (var(--space-lg)));
+  margin-top: 0;
   min-height: clamp(460px, 78vh, 720px);
   display: flex;
   align-items: center;
@@ -28,7 +27,7 @@
 
 @media (min-width: 768px) {
   .home-hero {
-    margin-top: calc(-1 * (var(--space-2xl)));
+    margin-top: 0;
   }
 }
 
