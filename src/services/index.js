@@ -31,3 +31,7 @@ export {
 	deleteImage,
 	getPublicUrl,
 } from "./storage-service.js";
+export {
+	getPublishedArticles,
+	getArticleBySlug,
+} from "./article-service.js";
