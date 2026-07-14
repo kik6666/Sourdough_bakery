@@ -141,7 +141,14 @@ function buildPublicUrl(bucket, objectPath) {
     return null;
   }
 
-  const { data } = supabase.storage.from(bucket).getPublicUrl(objectPath);
+  // Use Supabase image transformations to serve optimized webp, keeping sizes reasonable
+  const { data } = supabase.storage.from(bucket).getPublicUrl(objectPath, {
+    transform: {
+      width: 800,
+      format: "webp",
+      quality: 80,
+    },
+  });
   return data?.publicUrl || null;
 }
 
