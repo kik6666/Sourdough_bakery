@@ -3,14 +3,14 @@
 Multi-page JavaScript capstone project for SoftUni Software Technologies with AI.
 
 ## Live Project
-- URL: TODO
+- URL: https://sourdoughbakeryexamproject.netlify.app 
 
 ## Repository
-- GitHub: TODO
+- GitHub: https://github.com/kik6666/Sourdough_bakery 
 
 ## Demo Credentials
-- Customer: TODO
-- Admin: TODO
+- Customer: irina@yahoo.com pass: 123456
+- Admin: petya@abv.bg pass: 123456
 
 ## Tech Stack
 - HTML, CSS, JavaScript (ES Modules)
