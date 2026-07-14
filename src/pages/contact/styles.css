@@ -1,3 +1,554 @@
-.page-title {
-  letter-spacing: 0.02em;
+/* ─── prevent page-container padding bleeding around the hero ─ */
+#main-injector:has(.contact-hero) #page-container,
+#layout-root:has(.contact-hero) #site-main {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* ═══════════════════════════════════════════════════════
+   HERO — wheat photo, full-bleed
+════════════════════════════════════════════════════════ */
+.contact-hero {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: calc(-1 * var(--space-2xl));
+  margin-bottom: calc(-1 * var(--space-2xl));
+  min-height: clamp(560px, 90vh, 900px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: #1c130c;
+  background-image: url("/contacts_images/aszak-ears-of-corn-7325780_1920.jpg");
+  background-size: cover;
+  background-position: center 55%;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 767.98px) {
+  .contact-hero {
+    margin-top: calc(-1 * var(--space-lg));
+    margin-bottom: calc(-1 * var(--space-lg));
+    min-height: clamp(500px, 95vh, 800px);
+  }
+}
+
+.contact-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 13, 8, 0.55);
+}
+
+.contact-hero__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-3xl);
+}
+
+/* ═══════════════════════════════════════════════════════
+   GHOST CARD — transparent background, white border
+════════════════════════════════════════════════════════ */
+.contact-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 252, 245, 0.40);
+  border-radius: var(--radius-xl);
+  padding: var(--space-3xl) var(--space-2xl);
+  max-width: 680px;
+  width: 100%;
+  text-align: center;
+}
+
+/* ─── Eyebrow ─────────────────────────────────────────── */
+.contact-card__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bakery-light-brown);
+  margin-bottom: var(--space-md);
+}
+
+.contact-card__eyebrow-line {
+  width: 32px;
+  height: 2px;
+  background: var(--bakery-light-brown);
+  border-radius: var(--radius-full);
+}
+
+/* ─── Title ───────────────────────────────────────────── */
+.contact-card__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  line-height: 1.12;
+  color: #fffaf2;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+  margin: 0 0 var(--space-md);
+}
+
+/* ─── Intro ──────────────────────────────────────────── */
+.contact-card__intro {
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  line-height: 1.76;
+  color: rgba(248, 241, 231, 0.85);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+  max-width: 520px;
+  margin: 0 auto var(--space-2xl);
+}
+
+/* ─── 2-column info grid ─────────────────────────────── */
+.contact-card__grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl) var(--space-xl);
+  text-align: left;
+}
+
+/* ─── Single info block ───────────────────────────────── */
+.contact-info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.contact-info-block__icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background: rgba(196, 149, 106, 0.22);
+  color: var(--bakery-light-brown);
+  margin-bottom: 0.2rem;
+  flex-shrink: 0;
+}
+
+.contact-info-block__label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--bakery-light-brown);
+}
+
+.contact-info-block__value {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: rgba(248, 241, 231, 0.9);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.contact-info-block__link {
+  color: rgba(248, 241, 231, 0.9);
+  text-decoration: none;
+  transition: color var(--transition-fast, 0.15s);
+}
+
+.contact-info-block__link:hover,
+.contact-info-block__link:focus-visible {
+  color: var(--bakery-light-brown);
+  text-decoration: underline;
+}
+
+.contact-info-block__link:focus-visible {
+  outline: 2px solid var(--bakery-light-brown);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ─── Responsive ──────────────────────────────────────── */
+@media (max-width: 575.98px) {
+  .contact-card {
+    padding: var(--space-2xl) var(--space-lg);
+  }
+
+  .contact-card__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   CONTACT — FULL-BLEED HERO
+════════════════════════════════════════════════════════ */
+.contact-hero {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: calc(-1 * var(--space-2xl));
+  margin-bottom: calc(-1 * var(--space-2xl));
+  min-height: clamp(560px, 88vh, 860px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: #1c130c;
+  background-image: url("/contacts_images/aszak-ears-of-corn-7325780_1920.jpg");
+  background-size: cover;
+  background-position: center 55%;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 767.98px) {
+  .contact-hero {
+    margin-top: calc(-1 * var(--space-lg));
+    margin-bottom: calc(-1 * var(--space-lg));
+    background-position: 40% center;
+    min-height: clamp(500px, 92vh, 700px);
+  }
+
+  .contact-hero__overlay {
+    background: rgba(20, 13, 8, 0.78);
+  }
+}
+
+/* Uniform dark overlay — same density across the whole frame */
+.contact-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 13, 8, 0.60);
+}
+
+.contact-hero__inner {
+  position: relative;
+  z-index: 1;
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-3xl);
+}
+
+/* ═══════════════════════════════════════════════════════
+   CONTENT BLOCK
+════════════════════════════════════════════════════════ */
+.contact-hero__content {
+  color: #f8f1e7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  text-align: center;
+}
+
+/* ─── Eyebrow ─────────────────────────────────────────── */
+.contact-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bakery-light-brown);
+}
+
+.contact-hero__eyebrow-line {
+  width: 42px;
+  height: 2px;
+  background: var(--bakery-light-brown);
+  border-radius: var(--radius-full);
+}
+
+/* ─── Title ───────────────────────────────────────────── */
+.contact-hero__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2.1rem, 4.5vw, 3.6rem);
+  line-height: 1.12;
+  color: #fffaf2;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+  margin: 0;
+}
+
+.contact-hero__title-accent {
+  color: var(--bakery-light-brown);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ─── Intro ──────────────────────────────────────────── */
+.contact-hero__intro {
+  font-family: var(--font-body);
+  font-size: clamp(0.92rem, 1.3vw, 1.02rem);
+  line-height: 1.78;
+  color: rgba(248, 241, 231, 0.88);
+  max-width: 520px;
+  margin: 0 auto;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* ─── Contact info list ─────────────────────────────── */
+.contact-hero__info {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-sm) 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl) var(--space-2xl);
+  text-align: left;
+  width: 100%;
+}
+
+.contact-hero__info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
+.contact-hero__info-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background: rgba(196, 149, 106, 0.22);
+  color: var(--bakery-light-brown);
+  margin-bottom: 0.2rem;
+}
+
+.contact-hero__info-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--bakery-light-brown);
+}
+
+.contact-hero__info-value {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: rgba(248, 241, 231, 0.9);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.contact-hero__info-link {
+  color: rgba(248, 241, 231, 0.9);
+  text-decoration: none;
+  transition: color var(--transition-fast, 0.15s);
+}
+
+.contact-hero__info-link:hover,
+.contact-hero__info-link:focus-visible {
+  color: var(--bakery-light-brown);
+  text-decoration: underline;
+}
+
+.contact-hero__info-link:focus-visible {
+  outline: 2px solid var(--bakery-light-brown);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (max-width: 575.98px) {
+  .contact-hero__info {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+}
+.contact-hero {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: calc(-1 * var(--space-2xl));
+  margin-bottom: calc(-1 * var(--space-2xl));
+  min-height: clamp(560px, 90vh, 900px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: #1c130c;
+  background-image: url("/contacts_images/aszak-ears-of-corn-7325780_1920.jpg");
+  background-size: cover;
+  background-position: center 60%;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 767.98px) {
+  .contact-hero {
+    margin-top: calc(-1 * var(--space-lg));
+    margin-bottom: calc(-1 * var(--space-lg));
+    background-position: center center;
+    min-height: clamp(500px, 95vh, 800px);
+    align-items: flex-start;
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+}
+
+/* Semi-transparent dark overlay */
+.contact-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 10, 5, 0.58);
+}
+
+.contact-hero__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-3xl);
+}
+
+/* ═══════════════════════════════════════════════════════
+   CONTACT CARD  — frosted/tinted centred box
+════════════════════════════════════════════════════════ */
+.contact-card {
+  background: rgba(255, 252, 245, 0.82);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 252, 245, 0.55);
+  border-radius: var(--radius-xl);
+  padding: var(--space-3xl) var(--space-2xl);
+  max-width: 680px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+}
+
+/* ─── Eyebrow ─────────────────────────────────────────── */
+.contact-card__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bakery-light-brown);
+  margin-bottom: var(--space-md);
+}
+
+.contact-card__eyebrow-line {
+  width: 32px;
+  height: 2px;
+  background: var(--bakery-light-brown);
+  border-radius: var(--radius-full);
+}
+
+/* ─── Title ───────────────────────────────────────────── */
+.contact-card__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1.14;
+  color: var(--bakery-text);
+  text-shadow: none;
+  margin: 0 0 var(--space-md);
+}
+
+/* ─── Intro ───────────────────────────────────────────── */
+.contact-card__intro {
+  font-size: 1rem;
+  line-height: 1.76;
+  color: var(--bakery-muted);
+  text-shadow: none;
+  max-width: 520px;
+  margin: 0 auto var(--space-2xl);
+}
+
+/* ─── Info grid ───────────────────────────────────────── */
+.contact-card__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl) var(--space-xl);
+  text-align: left;
+}
+
+/* ─── Single info block ───────────────────────────────── */
+.contact-info-block {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.contact-info-block__icon {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background: rgba(196, 149, 106, 0.18);
+  color: var(--bakery-light-brown);
+  margin-top: 1px;
+}
+
+.contact-info-block__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.contact-info-block__label {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bakery-light-brown);
+}
+
+.contact-info-block__value {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--bakery-text);
+  text-shadow: none;
+}
+
+.contact-info-block__link {
+  color: var(--bakery-text);
+  text-decoration: none;
+  transition: color var(--transition-fast, 0.15s);
+}
+
+.contact-info-block__link:hover,
+.contact-info-block__link:focus-visible {
+  color: var(--bakery-light-brown);
+  text-decoration: underline;
+}
+
+.contact-info-block__link:focus-visible {
+  outline: 2px solid var(--bakery-light-brown);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ─── Responsive ──────────────────────────────────────── */
+@media (max-width: 575.98px) {
+  .contact-card {
+    padding: var(--space-2xl) var(--space-lg);
+  }
+
+  .contact-card__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
 }

@@ -25,6 +25,15 @@
   color: var(--bakery-accent);
   flex-shrink: 0;
   transition: color var(--transition-fast);
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+
+.brand-logo__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .navbar-brand:hover .brand-logo {
