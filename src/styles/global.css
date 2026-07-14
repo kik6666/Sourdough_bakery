@@ -95,7 +95,31 @@ h1, h2, h3, h4, h5, h6,
 }
 
 /* ─── Buttons ───────────────────────────────────── */
-.btn-bakery {
+
+/* Override Bootstrap blue with the bakery brand accent across the whole app */
+.btn-primary {
+  --bs-btn-bg: var(--bakery-accent);
+  --bs-btn-border-color: var(--bakery-accent);
+  --bs-btn-hover-bg: var(--bakery-accent-hover);
+  --bs-btn-hover-border-color: var(--bakery-accent-hover);
+  --bs-btn-active-bg: var(--bakery-accent-dark);
+  --bs-btn-active-border-color: var(--bakery-accent-dark);
+  --bs-btn-disabled-bg: var(--bakery-accent-light);
+  --bs-btn-disabled-border-color: var(--bakery-accent-light);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--bakery-accent);
+  --bs-btn-border-color: var(--bakery-accent);
+  --bs-btn-hover-bg: var(--bakery-accent);
+  --bs-btn-hover-border-color: var(--bakery-accent);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-bg: var(--bakery-accent-dark);
+  --bs-btn-active-border-color: var(--bakery-accent-dark);
+  --bs-btn-active-color: #fff;
+}
+
+
   background-color: var(--bakery-accent);
   border: 1.5px solid var(--bakery-accent);
   color: #fff;
